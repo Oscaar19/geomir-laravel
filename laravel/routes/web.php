@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\MailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +14,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/',function(){
+	return view('welcome');
 });
+Route::get('/', function () {
+   Log::info('Loading welcome page');
+   return view('welcome');
+});
+// ...
+Route::get('mail/test', [MailController::class, 'test']);
+// or
+// Route::get('mail/test', 'App\Http\Controllers\MailController@test');
+

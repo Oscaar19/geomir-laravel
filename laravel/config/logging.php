@@ -53,11 +53,11 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => ['file','errorlog'],
             'ignore_exceptions' => false,
         ],
 
-        'single' => [
+        'file' => [
             'driver' => 'single',
             'path' => storage_path('logs/laravel.log'),
             'level' => env('LOG_LEVEL', 'debug'),
