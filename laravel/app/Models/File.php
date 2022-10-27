@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class File extends Model
 {
     use HasFactory;
-    protected $editable = [
+    protected $fillable = [
         'filepath',
         'filesize',
     ];
