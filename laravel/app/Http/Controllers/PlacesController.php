@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Places;
 use App\Models\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PlacesController extends Controller
 {
@@ -42,16 +43,10 @@ class PlacesController extends Controller
         $validatedData = $request->validate([
             'name' => 'required',
             'upload' => 'required|mimes:gif,jpeg,jpg,png|max:1024'
-        ]);
-        \Log::debug("Fichero valido");
-
-
-    
+        ]);  
         
-        // Pujar fitxer al disc dur
-        $all = $request->all();
+        
         $upload = $request->file('upload');
-        \Log::debug("Fichero subido");
 
         // Pujar fitxer al disc dur
         $fileName = $upload->getClientOriginalName();
@@ -62,10 +57,6 @@ class PlacesController extends Controller
             $uploadName ,   // Filename
             'public'        // Disk
         );
-
-        \Log::debug("Fichero nombrado");
-
-
     
         if (\Storage::disk('public')->exists($filePath)) {
             \Log::debug("Local storage OK");
@@ -88,7 +79,7 @@ class PlacesController extends Controller
             ]);
             \Log::debug("DB storage OK");
             // Patró PRG amb missatge d'èxit
-            return redirect()->route('places.show', $place)
+            return redirect()->route('places.show', $place,$file)
                 ->with('success', 'File successfully saved');
         } else {
             \Log::debug("Local storage FAILS");
@@ -105,12 +96,13 @@ class PlacesController extends Controller
      * @param  \App\Models\Places  $places
      * @return \Illuminate\Http\Response
      */
-    public function show(Places $place)
+    public function show(Places $place, File $file)
     {
         if (DB::table('places')->exists($place->id))
         {
             return view("places.show",[
-                'place'=> $place
+                'place'=> $place,
+                'file'=>$file
             ]);        
         }    
         else{
@@ -127,7 +119,9 @@ class PlacesController extends Controller
      */
     public function edit(Places $place)
     {
-        //
+        return view("places.edit",[
+            'place'=> $place
+        ]);
     }
 
     /**
@@ -139,7 +133,46 @@ class PlacesController extends Controller
      */
     public function update(Request $request, Places $place)
     {
-        //
+        $validatedData = $request->validate([
+            'upload' => 'required|mimes:gif,jpeg,jpg,png|max:1024'
+        ]);  
+        
+        $upload = $request->file('upload');
+
+        // Pujar fitxer al disc dur
+        $fileName = $upload->getClientOriginalName();
+        $uploadName = time() . '_' . $fileName;
+        $fileSize = $upload->getSize();
+        $filePath = $upload->storeAs(
+            'uploads',      // Path
+            $uploadName ,   // Filename
+            'public'        // Disk
+        );
+        \Log::debug($filePath);
+
+        if (\Storage::disk('public')->exists($filePath)) {
+            \Log::debug("Local storage OK");
+            $fullPath = \Storage::disk('public')->path($filePath);
+            \Log::debug("File saved at {$fullPath}");
+            // Desar dades a BD
+            $file = DB::table('files')->select('id')->where('filepath','=',$filePath)->get();
+            \Log::debug($file);
+            $place->file_id=$file->id;
+            $place->save();
+            \Log::debug("DB storage OK");
+            
+            // Patró PRG amb missatge d'èxit
+            return redirect()->route('places.show', $place)
+                ->with('success', 'File successfully saved');
+        } else {
+            \Log::debug("Local storage FAILS");
+            // Patró PRG amb missatge d'error
+            return redirect()->route("places.edit")
+                ->with('error', 'ERROR uploading file');
+        }
+
+        
+
     }
 
     /**

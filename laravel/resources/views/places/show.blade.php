@@ -20,6 +20,7 @@
                        </thead>
                        <tbody>                           
                            <tr>
+                                <td>{{ $place->id }}</td>
                                 <td>{{ $place->name }}</td>
                                 <td>{{ $place->description }}</td>
                                 <td>{{ $place->latitude }}</td>
@@ -28,7 +29,7 @@
                            </tr>                           
                        </tbody>
                    </table>
-                   <img class="img-fluid" src="{{ asset("storage/{$places->filepath}") }}" />
+                   <img class="img-fluid" src="{{ asset("storage/{$file->filepath}") }}" />
                 </div>
                 <a class="btn btn-primary" href="{{ route('places.edit',$place) }}">Edita</a>
                 <form method="post" action="{{ route('places.destroy',$place) }}" enctype="multipart/form-data">

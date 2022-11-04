@@ -46,7 +46,7 @@ class FileController extends Controller
     
         // Obtenir dades del fitxer
         $upload = $request->file('upload');
-        $fileName = $upload->getClientOriginalName();
+        $fileName=$upload->getClientOriginalName();
         $fileSize = $upload->getSize();
         \Log::debug("Storing file '{$fileName}' ($fileSize)...");
 
