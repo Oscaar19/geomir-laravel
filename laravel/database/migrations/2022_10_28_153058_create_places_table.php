@@ -18,13 +18,14 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->integer('file_id');
+            $table->foreign('file_id')->references('id')->on('files');
             $table->string('latitude');
             $table->string('longitude');
             $table->integer('category_id')->nullable();
             $table->integer('visibility_id')->nullable();
-            $table->integer('author_id')->nullable();
-            $table->timestamp('created_at');
-            $table->timestamp('updated_at');
+            $table->integer('author_id');
+            $table->foreign('author_id')->references('id')->on('users');
+            $table->timestamps();
         });
     }
 

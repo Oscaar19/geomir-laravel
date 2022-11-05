@@ -9,7 +9,7 @@
                <div class="card-body">
                    <table class="table">
                        <thead>
-                           <tr>
+                           <tr> 
                                <td scope="col">ID</td>
                                <td scope="col">Name</td>
                                <td scope="col">Description</td>
@@ -39,4 +39,8 @@
                 </form>
                 <a class="btn btn-primary" href="{{ route('places.index') }}">Veure fitxers</a>
 
-           </div>
+                </div>
+       </div>
+   </div>
+</div>
+@endsection
