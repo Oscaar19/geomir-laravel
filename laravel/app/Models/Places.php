@@ -18,4 +18,16 @@ class Places extends Model
         'author_id',
         
     ];
+
+    public function file()
+    {
+        return $this->belongsTo(File::class);
+    }
+    public function user()
+    {
+        // foreign key does not follow conventions!!!
+        return $this->belongsTo(User::class, 'author_id');
+    }
+
+
 }

@@ -15,6 +15,7 @@
                                <td scope="col">Description</td>
                                <td scope="col">Latitude</td>
                                <td scope="col">Longitude</td>
+                               <td scope="col">Author</td>
                                <td scope="col">Created</td>
                            </tr>
                        </thead>
@@ -25,6 +26,7 @@
                                 <td>{{ $place->description }}</td>
                                 <td>{{ $place->latitude }}</td>
                                 <td>{{ $place->longitude }}</td>
+                                <td>{{ $user->name }}</td>
                                 <td>{{ $place->created_at }}</td>
                            </tr>                           
                        </tbody>

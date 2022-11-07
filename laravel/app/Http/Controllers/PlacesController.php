@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Places;
 use App\Models\File;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\UploadedFile;
@@ -77,6 +78,8 @@ class PlacesController extends Controller
                 'file_id' => $file->id,
                 'latitude' => $request->input('latitude'),
                 'longitude' => $request->input('longitude'),
+                'author_id' => $request->user()->id,
+
                 
             ]);
             \Log::debug("DB storage OK");
@@ -101,10 +104,12 @@ class PlacesController extends Controller
     public function show(Places $place)
     {
         $file=File::find($place->file_id);
+        $user=User::find($place->author_id);
     
         return view("places.show",[
             'place'=> $place,
             'file'=>$file,
+            'user'=>$user,
         ]);        
          
 

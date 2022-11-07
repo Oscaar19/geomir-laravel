@@ -39,7 +39,9 @@ Route::get('/', function (Request $request) {
     $request->session()->flash('info', $message);
     return view('welcome');
 });
-Route::resource('files', FileController::class)->middleware(['auth', 'role.any:2,3']);
+Route::resource('files', FileController::class)
+    ->middleware(['auth', 'role.any:2,3']);
 
-Route::resource('places', PlacesController::class);
+Route::resource('places', PlacesController::class)
+    ->middleware(['auth', 'role.any:2,3']);
  
