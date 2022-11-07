@@ -104,7 +104,7 @@ class PlacesController extends Controller
     
         return view("places.show",[
             'place'=> $place,
-            'file'=>$file
+            'file'=>$file,
         ]);        
          
 

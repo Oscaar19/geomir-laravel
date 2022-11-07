@@ -31,15 +31,18 @@
                    </table>
                    <img class="img-fluid" src="{{ asset("storage/{$file->filepath}") }}" />
                 </div>
-                <a class="btn btn-primary" href="{{ route('places.edit',$place) }}">Edita</a>
-                <form method="post" action="{{ route('places.destroy',$place) }}" enctype="multipart/form-data">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-secondary">Eliminar</button>
-                </form>
-                <a class="btn btn-primary" href="{{ route('places.index') }}">Veure fitxers</a>
-
+                <div>
+                    <a class="btn btn-primary" href="{{ route('places.edit',$place) }}">Edita</a>
+                    <form method="post" action="{{ route('places.destroy',$place) }}" enctype="multipart/form-data">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-secondary">Eliminar</button>
+                    </form>
+                    <a class="btn btn-primary" href="{{ route('places.index') }}">Veure fitxers</a>
                 </div>
+                
+
+            </div>
        </div>
    </div>
 </div>
