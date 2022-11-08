@@ -1,48 +1,37 @@
 @extends('layouts.app')
- 
+
+@section('box-title')
+    {{ __('Place') . " " . $place->id }}
+@endsection
+
 @section('content')
-<div class="container">
-   <div class="row justify-content-center">
-       <div class="col-md-8">
-           <div class="card">
-               <div class="card-header">{{ __('Place') }}</div>
-               <div class="card-body">
-                   <table class="table">
-                       <thead>
-                           <tr>
-                                <td scope="col">ID</td>
-                                <td scope="col">Name</td>
-                                <td scope="col">Description</td>
-                                <td scope="col">Latitude</td>
-                                <td scope="col">Longitude</td>
-                                <td scope="col">Created</td>
-                           </tr>
-                       </thead>
-                       <tbody>                           
-                           <tr>
-                                <td>{{ $place->id }}</td>
-                                <td>{{ $place->name }}</td>
-                                <td>{{ $place->description }}</td>
-                                <td>{{ $place->latitude }}</td>
-                                <td>{{ $place->longitude }}</td>
-                                <td>{{ $place->created_at }}</td>
-                           </tr>                           
-                       </tbody>
-                   </table>
-                   <img class="img-fluid" src="{{ asset("storage/{$place->filepath}") }}" />
-                </div>
-                <form method="post" action="{{ route('places.update',$place) }}" enctype="multipart/form-data">
-                    @csrf
-                    @method('PUT')
-                    <div class="form-group">
-                        <label for="upload">Place:</label>
-                        <input type="file" class="form-control" name="upload"/>
-                    </div>
-                    <button type="update" class="btn btn-primary">Cambia</button>
-                    <button type="reset" class="btn btn-secondary">Reset</button>
-                </form>
-           </div>
-       </div>
-   </div>
-</div>
+    <img class="img-fluid" src="{{ asset('storage/'.$file->filepath) }}" title="Image preview"/>
+    <form method="POST" action="{{ route('places.update', $place) }}" enctype="multipart/form-data">
+        @csrf
+        @method("PUT")
+        <div class="form-group">
+            <label for="name">{{ _('Name') }}</label>
+            <input type="text" id="name" name="name" class="form-control" value="{{ $place->name }}" />
+        </div>
+        <div class="form-group">
+            <label for="description">{{ _('Description') }}</label>
+            <textarea id="description" name="description" class="form-control">{{ $place->description }}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="upload">{{ _('File') }}</label>
+            <input type="file" id="upload" name="upload" class="form-control" />
+        </div>
+        <div class="form-group">            
+                <label for="latitude">{{ _('Latitude') }}</label>
+                <input type="text" id="latitude" name="latitude" class="form-control"
+                    value="{{ $place->latitude }}"/>
+        </div>
+        <div class="form-group">            
+                <label for="longitude">{{ _('Longitude') }}</label>
+                <input type="text" id="longitude" name="longitude" class="form-control"
+                    value="{{ $place->longitude }}"/>
+        </div>
+        <button type="submit" class="btn btn-primary">{{ _('Update') }}</button>
+        <button type="reset" class="btn btn-secondary">{{ _('Reset') }}</button>
+    </form>
 @endsection
