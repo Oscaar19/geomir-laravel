@@ -25,3 +25,6 @@ class VisibilitySeeder extends Seeder
         DB::table('visibilities')->insert($visibilities);
     }
 }
+
+
+//PREGUNTAR POR LAS RELACIONES DE FK Y PORQUE NO SE COMITEA TODO
