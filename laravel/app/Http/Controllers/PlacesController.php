@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Places;
+use App\Models\Place;
 use App\Models\File;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -21,7 +21,7 @@ class PlacesController extends Controller
     public function index()
     {
         return view("places.index", [
-            "places" => Places::all()
+            "places" => Place::all()
         ]);
     }
 
@@ -91,10 +91,10 @@ class PlacesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Places  $places
+     * @param  \App\Models\Place  $places
      * @return \Illuminate\Http\Response
      */
-    public function show(Places $place)
+    public function show(Place $place)
     {
         $file=File::find($place->file_id);
         $user=User::find($place->author_id);
@@ -111,10 +111,10 @@ class PlacesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Places  $places
+     * @param  \App\Models\Place  $places
      * @return \Illuminate\Http\Response
      */
-    public function edit(Places $place)
+    public function edit(Place $place)
     {
         return view("places.edit",[
             'place'  => $place,
@@ -127,10 +127,10 @@ class PlacesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Places  $places
+     * @param  \App\Models\Place  $places
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Places $place)
+    public function update(Request $request, Place $place)
     {
         // Validar dades del formulari
         $validatedData = $request->validate([
@@ -172,10 +172,10 @@ class PlacesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Places  $places
+     * @param  \App\Models\Place  $places
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Places $place)
+    public function destroy(Place $place)
     {
         $file=File::find($place->file_id);
         \Storage::disk('public')->exists($place->id);
@@ -190,7 +190,7 @@ class PlacesController extends Controller
         }
         else{
             return redirect()->route('places.index', [
-                "places" => Places::all()
+                "places" => Place::all()
             ])
                 ->with('error', 'Place deleted!');
            

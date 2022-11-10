@@ -27,4 +27,3 @@ class VisibilitySeeder extends Seeder
 }
 
 
-//PREGUNTAR POR LAS RELACIONES DE FK Y PORQUE NO SE COMITEA TODO

@@ -2,54 +2,38 @@
 
 namespace App\Models;
 
-use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Place extends Model
 {
-    use CrudTrait;
+    use \Backpack\CRUD\app\Models\Traits\CrudTrait;
+    use HasFactory;
+    protected $fillable = [
+        'name',
+        'description',
+        'latitude',
+        'longitude',
+        'file_id',
+        'category_id',
+        'visibility_id',
+        'author_id'
 
-    /*
-    |--------------------------------------------------------------------------
-    | GLOBAL VARIABLES
-    |--------------------------------------------------------------------------
-    */
+    ];
+    public function file()
+    {
+        return $this->belongsTo(File::class);
+    }
 
-    protected $table = 'places';
-    // protected $primaryKey = 'id';
-    // public $timestamps = false;
-    protected $guarded = ['id'];
-    // protected $fillable = [];
-    // protected $hidden = [];
-    // protected $dates = [];
-
-    /*
-    |--------------------------------------------------------------------------
-    | FUNCTIONS
-    |--------------------------------------------------------------------------
-    */
-
-    /*
-    |--------------------------------------------------------------------------
-    | RELATIONS
-    |--------------------------------------------------------------------------
-    */
-
-    /*
-    |--------------------------------------------------------------------------
-    | SCOPES
-    |--------------------------------------------------------------------------
-    */
-
-    /*
-    |--------------------------------------------------------------------------
-    | ACCESSORS
-    |--------------------------------------------------------------------------
-    */
-
-    /*
-    |--------------------------------------------------------------------------
-    | MUTATORS
-    |--------------------------------------------------------------------------
-    */
+    public function user()
+    {
+        // foreign key does not follow conventions!!!
+        return $this->belongsTo(User::class, 'author_id');
+    }
+    public function author()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
+
+
