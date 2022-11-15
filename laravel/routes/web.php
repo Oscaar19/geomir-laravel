@@ -42,5 +42,7 @@ Route::get('/', function (Request $request) {
 Route::resource('files', FileController::class)
     ->middleware(['auth', 'permission:files']);
 
+Route::get('/language/{locale}', [App\Http\Controllers\HomeController::class, 'language']);
+
 
  

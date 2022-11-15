@@ -23,16 +23,23 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        {
-            // this tells Laravel that when UserCrudController is requested,
-            // your own UserCrudController should be served.
-            $this->app->bind(
-                // package controller
-                \Backpack\PermissionManager\app\Http\Controllers\UserCrudController::class,
-                // your controller
-                \App\Http\Controllers\Admin\UserCrudController::class
-            );
-        }
+        
+        // this tells Laravel that when UserCrudController is requested,
+        // your own UserCrudController should be served.
+        $this->app->bind(
+            // package controller
+            \Backpack\PermissionManager\app\Http\Controllers\UserCrudController::class,
+            // your controller
+            \App\Http\Controllers\Admin\UserCrudController::class
+        );
+
+        // pass data to view in all requests
+        view()->composer('partials.language-switcher', function ($view) {
+        $view->with('currentLocale', app()->getLocale());
+        $view->with('availableLocales', config('app.available_locales'));
+    });
+
+        
          
     }
 }
