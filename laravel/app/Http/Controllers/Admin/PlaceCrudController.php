@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\PlaceRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Illuminate\Support\Facades\Log;
+
 
 /**
  * Class PlaceCrudController
@@ -31,6 +33,12 @@ class PlaceCrudController extends CrudController
         CRUD::setEntityNameStrings('place', 'places');
         $this->crud->denyAccess(['update', 'create', 'delete']);
 
+        if (!backpack_user()->hasPermissionTo('places.list', 'web')) {
+            CRUD::denyAccess('list');
+        }
+        if (!backpack_user()->hasPermissionTo('places.create', 'web')) {
+            CRUD::denyAccess('create');
+        }
     }
 
     /**

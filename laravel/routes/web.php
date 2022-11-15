@@ -40,8 +40,7 @@ Route::get('/', function (Request $request) {
     return view('welcome');
 });
 Route::resource('files', FileController::class)
-    ->middleware(['auth', 'role.any:1,2,3']);
+    ->middleware(['auth', 'permission:files']);
 
-Route::resource('places', PlacesController::class)
-    ->middleware(['auth', 'role.any:1,2,3']);
+
  
