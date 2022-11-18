@@ -28,15 +28,16 @@ class PlaceCrudController extends CrudController
      */
     public function setup()
     {
+        Log::debug("Entro al setup");
         CRUD::setModel(\App\Models\Place::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/place');
         CRUD::setEntityNameStrings('place', 'places');
         $this->crud->denyAccess(['update', 'create', 'delete']);
-
-        if (!backpack_user()->hasPermissionTo('places.list', 'web')) {
+        Log::debug("Paso previo al if");
+        if (!backpack_user()->hasPermissionTo('places.list')) {
             CRUD::denyAccess('list');
         }
-        if (!backpack_user()->hasPermissionTo('places.create', 'web')) {
+        if (!backpack_user()->hasPermissionTo('places.create')) {
             CRUD::denyAccess('create');
         }
     }

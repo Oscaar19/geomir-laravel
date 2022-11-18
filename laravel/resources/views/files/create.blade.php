@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
+
 @section('content')
+    @include('flash')
 
     <form method="post" action="{{ route('files.store') }}" enctype="multipart/form-data">
         @csrf

@@ -5,6 +5,7 @@ use App\Http\Controllers\MailController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\PlacesController;
+use App\Http\Controllers\PlaceCrudController;
 
 
 
@@ -37,12 +38,15 @@ Route::get('/', function (Request $request) {
     $message = 'Loading welcome page';
     Log::info($message);
     $request->session()->flash('info', $message);
-    return view('welcome');
+    return view('auth/login');
 });
+
 Route::resource('files', FileController::class)
     ->middleware(['auth', 'permission:files']);
+Route::resource('places', PlacesController::class)
+    ->middleware(['auth', 'permission:places']);
 
-Route::get('/language/{locale}', [App\Http\Controllers\HomeController::class, 'language']);
+Route::get('/language/{locale}', [App\Http\Controllers\LanguageController::class, 'language']);
 
 
  

@@ -20,6 +20,7 @@ class PlacesController extends Controller
      */
     public function index()
     {
+        Log::debug("Entro al index");
         return view("places.index", [
             "places" => Place::all()
         ]);

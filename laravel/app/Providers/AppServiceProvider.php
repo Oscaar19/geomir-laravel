@@ -35,11 +35,9 @@ class AppServiceProvider extends ServiceProvider
 
         // pass data to view in all requests
         view()->composer('partials.language-switcher', function ($view) {
-        $view->with('currentLocale', app()->getLocale());
-        $view->with('availableLocales', config('app.available_locales'));
-    });
-
-        
+            $view->with('currentLocale', app()->getLocale());
+            $view->with('availableLocales', config('app.available_locales'));
+        });       
          
     }
 }

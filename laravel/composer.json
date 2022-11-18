@@ -8,6 +8,7 @@
         "php": "^8.0.2",
         "backpack/crud": "^5.4",
         "backpack/generators": "^3.3",
+        "backpack/langfilemanager": "^4.1",
         "backpack/permissionmanager": "^6.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.19",
