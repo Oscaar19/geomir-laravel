@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@vite('resources/js/files/create.js')
 
 
 @section('content')
