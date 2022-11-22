@@ -42,7 +42,7 @@
                     </form>
                     <a class="btn btn-primary" href="{{ route('places.index') }}">Veure fitxers</a>
                 </div>
-                
+                @include('flash')
 
             </div>
        </div>

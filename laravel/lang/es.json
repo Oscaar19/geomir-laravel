@@ -1,4 +1,5 @@
 {
     "File successfully saved": "Fichero guardado correctamente",
-    "ERROR uploading file": "ERROR subiendo el fichero"
+    "ERROR uploading file": "ERROR subiendo el fichero",
+    "You are not the author of the place.":"No eres el autor del lugar."
 }

@@ -117,11 +117,16 @@ class PlacesController extends Controller
      */
     public function edit(Place $place)
     {
-        return view("places.edit",[
-            'place'  => $place,
-            'file'   => $place->file,
-            'author' => $place->user,
-        ]);
+        if (auth()->user()->id == $place->author_id){
+            return view("places.edit",[
+                'place'  => $place,
+                'file'   => $place->file,
+                'author' => $place->user,
+            ]);
+        }else{
+            return redirect()->back()
+                ->with('error', __('You are not the author of the place.'));
+        }
     }
 
     /**
@@ -133,6 +138,7 @@ class PlacesController extends Controller
      */
     public function update(Request $request, Place $place)
     {
+        
         // Validar dades del formulari
         $validatedData = $request->validate([
             'name'        => 'required',
@@ -166,7 +172,7 @@ class PlacesController extends Controller
             // Patró PRG amb missatge d'error
             return redirect()->route("places.create")
                 ->with('error', __('ERROR Uploading file'));
-        }       
+        }              
 
     }
 

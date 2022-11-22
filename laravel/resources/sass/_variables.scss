@@ -24,8 +24,11 @@ $line-height-base: 1.6;
     width: 100%;
     height: 20%;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-wrap: wrap;
+}
+
+.navbar{
+    position: relative;
 }
 
 // .logoGeomir{
@@ -168,4 +171,22 @@ $line-height-base: 1.6;
 .card-body{
     width: 100%;
     height: 80%;
+}
+
+#multiLanguage{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.maxHeight{
+    height: 100%;
+}
+
+.navDiv{
+    height: 70%;
+    margin-left: 2%;
+    margin-right: 2%;
 }

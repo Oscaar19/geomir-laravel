@@ -1,7 +1,4 @@
 <div class="dropdown">
-    <script>
-        const currentLocale = {{ Js::from($currentLocale) }};
-    </script>
     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
         {{ $availableLocales[$currentLocale] }} ({{ $currentLocale }})
     </a>
@@ -13,3 +10,6 @@
     @endforeach
     </ul>       
 </div>
+<script>
+    const currentLocale = {{ Js::from($currentLocale) }};
+</script>
