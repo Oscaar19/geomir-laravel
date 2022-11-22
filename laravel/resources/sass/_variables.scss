@@ -19,14 +19,14 @@ $line-height-base: 1.6;
 // }
 
 
-// .navFijo{
-//     background-color: #3C6E71;
-//     width: 100%;
-//     height: 10%;
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: center;
-// }
+.navFijo{
+    background-color: #3C6E71;
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
 // .logoGeomir{
 //     width: 20%;
@@ -42,39 +42,38 @@ $line-height-base: 1.6;
 //     height: 100%;
 // }
 
-// .maxWidthMaxHeight{
-//     width: 100%;
-//     height: 100%;
-// }
+.maxWidthMaxHeight{
+    width: 100%;
+    height: 100%;
+}
 
 // .formInput{
 //     margin-bottom: 5%;
 // }
 
-// .loginButton{
-//     -webkit-border-radius: 32px;
-//     -moz-border-radius: 32px;
-//     border-radius: 32px;
-//     color: #FFFFFF;
-//     font-family: Helvetica;
-//     font-size: 2.3vh;
-//     padding: 1vh;
-//     background-color: #284B63;
-//     border: solid #969797 3px;
-//     text-decoration: none;
-//     width: 30vh;
-// }
+.loginButton{
+    -webkit-border-radius: 32px;
+    -moz-border-radius: 32px;
+    border-radius: 32px;
+    color: #FFFFFF;
+    font-family: Helvetica;
+    font-size: 2.3vh;
+    padding: 1vh;
+    background-color: #284B63;
+    border: solid #969797 3px;
+    text-decoration: none;
+    width: 20vh;
+}
 
-// .mainHome{
-//     margin-left: 3%;
-//     margin-right: 3%;
-//     width: 94%;
-//     height: 90%;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     flex-wrap: wrap;
-// }
+
+
+.mainHome{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 // .contenedorLogin{
 //     width: 100%;
@@ -88,11 +87,11 @@ $line-height-base: 1.6;
 //     width: 100%;
 // }
 
-// .centrar{
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-// }
+.centrar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 // .card-header{
 //     width: 100%;
@@ -126,3 +125,47 @@ $line-height-base: 1.6;
 //     width: 50%;
 //     height: 100%;
 // }
+
+
+.loginContainer{
+    background-color: #3C6E71;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.formContainer{
+    border: solid #FFFFFF 0.3vh;
+    background-color: #D9D9D9;
+    height: 60%;
+    width: 30%;
+}
+
+.messageContainer{
+    height: 100%;
+    width: 35%;
+}
+
+#welcomeMessage{
+    font-size: 11vh;
+    font-family: oblique;
+    color: #353535;
+}
+
+.loginTitleLetter{
+    font-size: 4vh;
+    margin-bottom: 2%;
+    margin-top: 1%;
+    height: 17%;
+}
+
+.formInput{
+    margin-bottom: 4%;
+    width: 70%;
+    margin-left: 15%;
+}
+
+.card-body{
+    width: 100%;
+    height: 80%;
+}
