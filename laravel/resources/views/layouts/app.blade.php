@@ -19,7 +19,7 @@
 <body class="maxWidthMaxHeight">
     <nav class="navFijo">
         <div id="multiLanguage">@include('partials.language-switcher')</div>
-        <div class="navDiv">
+        <div class="navLogo">
             <a class="navbar-brand" href="{{ url('/') }}">
                 GEOMIR
             </a>
@@ -27,24 +27,34 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
-        div
         <div class="navDiv">
-            <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ms-auto">
                 <!-- Authentication Links -->
                 @guest
                     @if (Route::has('register'))
-                        <li class="nav-item">
+                        <div class="nav-item">
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
+                        </div>
                     @endif
                 @else
-                    <li class="nav-item dropdown">
+                    <div class="navElement">
+                        <a><img src="../public/imatges/chincheta.png" alt=""></img>PLACES</a>
+                    </div>
+                    <div class="navElement">
+                        <a><img src="../public/imatges/chincheta.png" alt=""></img>FILES</a>
+                    </div>
+                    <div class="navElement">
+                        <a><img src="../public/imatges/chincheta.png" alt=""></img>RESSENYES</a>
+                    </div>
+                    <div class="navElement">
+                        <a><img src="../public/imatges/chincheta.png" alt=""></img>LA MEVA AGENDA</a>
+                    </div>
+                    
+                    <div class="navElement">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}
                         </a>
 
-                        <div class="dropdown-menu dropdown-menu-end">
+                        <div class="dropdown-menu">
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
@@ -55,7 +65,7 @@
                                 @csrf
                             </form>
                         </div>
-                    </li>
+                    </div>
                 @endguest
             </ul>
         </div>

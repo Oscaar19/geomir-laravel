@@ -187,6 +187,24 @@ $line-height-base: 1.6;
 
 .navDiv{
     height: 70%;
-    margin-left: 2%;
     margin-right: 2%;
+    width: 76%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.navLogo{
+    margin-left: 2%;
+    width: 20%;
+    height: 70%;
+}
+
+.navElement{
+    height: 100%;
+    width: 20%;
+    margin: 0%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
