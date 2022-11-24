@@ -48,6 +48,7 @@ $line-height-base: 1.6;
 
 
 .mainHome{
+    background-color: #3C6E71;
     width: 100%;
     height: 80%;
     display: flex;
@@ -127,7 +128,7 @@ $line-height-base: 1.6;
 }
 
 #welcomeMessage{
-    font-size: 11vh;
+    font-size: 9vh;
     font-family: oblique;
     color: #353535;
 }
@@ -215,4 +216,32 @@ $line-height-base: 1.6;
 
 .linkNav:hover{
     color: #284B63;
+}
+
+.imgShow{
+    width: 30%;
+    height: 30%;
+}
+
+.container{
+    width: 100%;
+    height: 100%;
+    margin-left: 10%;
+    margin-right: 10%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.divPlace{
+    border: solid #353535;
+    background-color: #284B63;
+    width: 100%;
+    height: 30%;
+    margin-bottom: 2%;
+}
+#addPlace{
+    width: 80%;
+    margin-top: 2%;
+    height: 5%;
 }
