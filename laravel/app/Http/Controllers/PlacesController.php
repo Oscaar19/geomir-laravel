@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Place;
 use App\Models\File;
 use App\Models\User;
+use App\Models\Visibility;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\UploadedFile;
@@ -20,7 +21,6 @@ class PlacesController extends Controller
      */
     public function index()
     {
-        Log::debug("Entro al index");
         return view("places.index", [
             "places" => Place::all()
         ]);
@@ -33,7 +33,9 @@ class PlacesController extends Controller
      */
     public function create()
     {
-        return view("places.create");
+        return view("places.create", [
+            "visibilities" => Visibility::all()
+        ]);
  
     }
 
@@ -52,6 +54,7 @@ class PlacesController extends Controller
             'upload'      => 'required|mimes:gif,jpeg,jpg,png,mp4|max:2048',
             'latitude'    => 'required',
             'longitude'   => 'required',
+            'visibility_id'   => 'required',
         ]);
         
         // Obtenir dades del formulari
@@ -60,6 +63,7 @@ class PlacesController extends Controller
         $upload      = $request->file('upload');
         $latitude    = $request->get('latitude');
         $longitude   = $request->get('longitude');
+        $visibility_id  = $request->get('visibility_id');
 
         // Desar fitxer al disc i inserir dades a BD
         $file = new File();
@@ -75,6 +79,7 @@ class PlacesController extends Controller
                 'latitude'    => $latitude,
                 'longitude'   => $longitude,
                 'author_id'   => auth()->user()->id,
+                'visibility_id'  => $visibility_id,
             ]);
             \Log::debug("DB storage OK");
             // Patró PRG amb missatge d'èxit
@@ -122,6 +127,7 @@ class PlacesController extends Controller
                 'place'  => $place,
                 'file'   => $place->file,
                 'author' => $place->user,
+                "visibilities" => Visibility::all(),
             ]);
         }else{
             return redirect()->back()
@@ -146,6 +152,7 @@ class PlacesController extends Controller
             'upload'      => 'nullable|mimes:gif,jpeg,jpg,png,mp4|max:2048',
             'latitude'    => 'required',
             'longitude'   => 'required',
+            'visibility_id'   => 'required',
         ]);
         
         // Obtenir dades del formulari
@@ -154,6 +161,7 @@ class PlacesController extends Controller
         $upload      = $request->file('upload');
         $latitude    = $request->get('latitude');
         $longitude   = $request->get('longitude');
+        $visibility_id  = $request->get('visibility_id');
 
         // Desar fitxer (opcional)
         if (is_null($upload) || $place->file->diskSave($upload)) {
@@ -163,6 +171,7 @@ class PlacesController extends Controller
             $place->description = $description;
             $place->latitude    = $latitude;
             $place->longitude   = $longitude;
+            $place->visibility_id = $visibility_id;
             $place->save();
             \Log::debug("DB storage OK");
             // Patró PRG amb missatge d'èxit

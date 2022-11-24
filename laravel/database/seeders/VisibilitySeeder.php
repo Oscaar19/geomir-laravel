@@ -4,6 +4,10 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Visibility;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class VisibilitySeeder extends Seeder
 {
@@ -15,12 +19,9 @@ class VisibilitySeeder extends Seeder
     public function run()
     {
         $visibilities=[
-            // ['id' => '1', 'name' => 'author'],
-            // ['id' => '2', 'name' => 'editor'],
-            // ['id' => '3', 'name' => 'admin'],
-            ['name' => 'public'],
-            ['name' => 'contacts'],
-            ['name' => 'private'],
+            ['id' => '1', 'name' => 'public'],
+            ['id' => '2', 'name' => 'contacts'],
+            ['id' => '3', 'name' => 'private'],
         ];
         DB::table('visibilities')->insert($visibilities);
     }

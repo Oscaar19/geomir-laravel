@@ -19,13 +19,13 @@
                        </thead>
                        <tbody>
                            @foreach ($places as $place)
-                           <tr>
-                                <td><a href="{{ route('places.show',$place) }}">{{ $place->name }}</a></td>
-                                <td>{{ $place->description }}</td>
-                                <td>{{ $place->latitude }}</td>
-                                <td>{{ $place->longitude }}</td>
-                                <td>{{ $place->created_at }}</td>
-                           </tr>
+                                <tr>
+                                    <td><a href="{{ route('places.show',$place) }}">{{ $place->name }}</a></td>
+                                    <td>{{ $place->description }}</td>
+                                    <td>{{ $place->latitude }}</td>
+                                    <td>{{ $place->longitude }}</td>
+                                    <td>{{ $place->created_at }}</td>
+                                </tr>
                            @endforeach
                        </tbody>
                    </table>

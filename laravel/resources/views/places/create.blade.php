@@ -29,9 +29,19 @@
             <label for="longitude">Longitude:</label>
             <input type="text" class="form-control" name="longitude"/>
         </div>
+        <div>
+            <label for="visibility_id">Visibility</label>
+            
+            <select name="visibility_id" class="form-control">
+                @foreach($visibilities as $visibility)
+                    <option value="{{__($visibility->id)}}">{{__($visibility->name)}}</option>
+                @endforeach 
+            </select>
+                                               
+        </div>
         <div class="form-group">
-                <label for="upload">Foto:</label>
-                <input type="file" class="form-control" name="upload"/>
+            <label for="upload">Foto:</label>
+            <input type="file" class="form-control" name="upload"/>
         </div>   
         <button type="submit" class="btn btn-primary">Create</button>
         <button type="reset" class="btn btn-secondary">Reset</button>
