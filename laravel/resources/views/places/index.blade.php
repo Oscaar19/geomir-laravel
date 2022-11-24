@@ -29,6 +29,12 @@
                            @endforeach
                        </tbody>
                    </table>
+                   <form action="{{ route('places.favourite',$place) }}" method="post">
+                       @csrf 
+                       <tr>
+                           <button class="btn btn-primary">Favourite</button>
+                       </tr>
+                   </form>
                    <a class="btn btn-primary" href="{{ route('places.create') }}" role="button">Add new place</a>
                </div>
            </div>

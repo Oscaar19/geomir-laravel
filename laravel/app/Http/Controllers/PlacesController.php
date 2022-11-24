@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Place;
 use App\Models\File;
 use App\Models\User;
+use App\Models\Favourite;
 use App\Models\Visibility;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -193,23 +194,41 @@ class PlacesController extends Controller
      */
     public function destroy(Place $place)
     {
-        $file=File::find($place->file_id);
-        \Storage::disk('public')->exists($place->id);
-        $place->delete();
+        if (auth()->user()->id == $place->author_id){
+            $file=File::find($place->file_id);
+            \Storage::disk('public')->exists($place->id);
+            $place->delete();
 
-        \Storage::disk('public')->exists($file->filepath);
-        $file->delete();
+            \Storage::disk('public')->exists($file->filepath);
+            $file->delete();
 
-        if (\Storage::disk('public')->exists($place->id)){
-            return redirect()->route('places.show',$place)
-            ->with('error', 'ERROR deleting place');
-        }
-        else{
-            return redirect()->route('places.index', [
-                "places" => Place::all()
-            ])
-                ->with('error', 'Place deleted!');
-           
+            if (\Storage::disk('public')->exists($place->id)){
+                return redirect()->route('places.show',$place)
+                ->with('error', 'ERROR deleting place');
+            }
+            else{
+                return redirect()->route('places.index', [
+                    "places" => Place::all()
+                ])
+                    ->with('error', 'Place deleted!');
+            
+            }
+        }else{
+            return redirect()->back()
+                ->with('error', __('You are not the author of the place.'));
         }
     }
+
+    public function favourite(Place $place)
+    {
+        $user=User::find($place->author_id);
+        $favourite = Favourite::create([
+            'user_id' => $user->id,
+            'place_id' => $place->id,
+        ]);
+        return redirect()->back();
+    }
+
+    //Hacer una PK en Favourite para que no haya problema con darle varios Favs
+    //Preguntar a Armand como solucionar el unfavourite
 }
