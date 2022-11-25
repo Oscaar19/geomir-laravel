@@ -221,6 +221,19 @@ class PlacesController extends Controller
 
     public function favourite(Place $place)
     {
+
+        $user=User::find($place->author_id);
+        $favourite = Favourite::create([
+            'user_id' => $user->id,
+            'place_id' => $place->id,
+        ]);
+        return redirect()->back();
+        
+        
+    }
+
+    public function unfavourite(Place $place)
+    {
         $user=User::find($place->author_id);
         $favourite = Favourite::create([
             'user_id' => $user->id,
@@ -228,6 +241,8 @@ class PlacesController extends Controller
         ]);
         return redirect()->back();
     }
+
+
 
     //Hacer una PK en Favourite para que no haya problema con darle varios Favs
     //Preguntar a Armand como solucionar el unfavourite

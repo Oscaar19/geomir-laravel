@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="loginContainer maxWidthMaxHeight">
+<div class="loginContainer">
     <div class="messageContainer centrar">
         <p id="welcomeMessage"><b>Discover your friend's favourites places!</b></p>
     </div>

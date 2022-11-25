@@ -15,10 +15,15 @@ return new class extends Migration
     {
         Schema::create('favourites', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');;
             $table->unsignedBigInteger('place_id');
-            $table->foreign('place_id')->references('id')->on('places');
+            $table->foreign('place_id')->references('id')->on('places')->onUpdate('cascade')->onDelete('cascade');;
         });
+        Schema::table('favourites', function (Blueprint $table) {
+            $table->id()->first();
+            $table->unique(['user_id', 'place_id']);
+        });
+ 
     }
 
     /**

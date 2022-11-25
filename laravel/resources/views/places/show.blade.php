@@ -1,33 +1,38 @@
 @extends('layouts.app')
  
 @section('content')
-<div class="container">
-    <div class="">
-        <table class="table">
-            <thead>
-                <tr> 
-                    <td scope="col">ID</td>
-                    <td scope="col">Name</td>
-                    <td scope="col">Description</td>
-                    <td scope="col">Latitude</td>
-                    <td scope="col">Longitude</td>
-                    <td scope="col">Author</td>
-                    <td scope="col">Created</td>
-                </tr>
-            </thead>
-            <tbody>                           
-                <tr>
-                    <td>{{ $place->id }}</td>
-                    <td>{{ $place->name }}</td>
-                    <td>{{ $place->description }}</td>
-                    <td>{{ $place->latitude }}</td>
-                    <td>{{ $place->longitude }}</td>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $place->created_at }}</td>
-                </tr>                           
-            </tbody>
-        </table>
-        <img class="imgShow" src="{{ asset("storage/{$file->filepath}") }}" />
+
+<div class="divPlace wrapClass">
+    <div class="divInfo">
+        <div class="">
+            <div class="divUserName centrar"><p class="userName">{{ $place->author->name }}</p></div>
+            <div class="imgUser"><img src="../../../imatges/usuario.png" class="imgIndex"></div>
+            @if(!$place->isfavourite)
+                <form action="{{ route('places.favourite',$place) }}" method="post" class="favButton centrar" title="Add to favourites">
+                    @csrf 
+                    <button class="standardButton"><img src="../../../imatges/favoritos.png" class="imgFav"></button>
+                </form>
+            @else
+                <form action="{{ route('places.unfavourite',$place) }}" method="post" class="favButton centrar" title="Remove from favourites">
+                    @csrf 
+                    <button class="standardButton"><img src="../../../imatges/favoritos.png" class="imgFav"></button>
+                </form>
+            @endif
+        </div>
+        <div class="placeInfo">
+            <div class="placeName centrar"><p>{{ $place->name }}</p></div>
+            <div class="placeDescr"><p>{{ $place->description }}</p></div>
+            <div class="extraInfo">
+                <div class="placeDate"><p>{{ $place->created_at }}</p></div>
+                <div class="infoLatLong">
+                    <div class="placeLat"><p>Latitud {{ $place->latitude }}</p></div>
+                    <div class="placeLong"><p>Longitud {{ $place->longitude }}</p></div>
+                </div>
+            </div>
+        </div>
+        <div class="placePhoto">
+            <img class="imgPlace" src="{{ asset("storage/{$file->filepath}") }}" />
+        </div>
     </div>
     <div>
         <a class="btn btn-primary" href="{{ route('places.edit',$place) }}">Edita</a>
@@ -39,5 +44,6 @@
         <a class="btn btn-primary" href="{{ route('places.index') }}">Veure fitxers</a>
     </div>
     @include('flash')
-</div>
+</div>           
+
 @endsection
