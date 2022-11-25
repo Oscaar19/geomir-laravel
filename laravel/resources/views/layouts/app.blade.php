@@ -18,76 +18,78 @@
 </head>
 <body class="maxWidthMaxHeight">
     <nav class="navFijo">
-        <div id="multiLanguage">@include('partials.language-switcher')</div>
         <div class="navLogo">
-            <a class="navbar-brand" href="{{ url('/') }}">
-                GEOMIR
+            <a id="aLogo" href="{{ url('/places') }}">
+                <img src="../../../imatges/logo.png" class="imagenNav">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
-        <div class="navDiv">
-                <!-- Authentication Links -->
-                @guest
-                    @if (Route::has('register'))
-                        <div class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+        <div id="navToolbar">
+            <div id="multiLanguage">@include('partials.language-switcher')</div>
+            <div class="navDiv">
+                    <!-- Authentication Links -->
+                    @guest
+                        @if (Route::has('register'))
+                            <div class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            </div>
+                        @endif
+                    @else
+                        <div class="navElement">
+                            <div class="emojiNav">
+                                <img src="../../../imatges/chincheta.png" class="imagenNav"></img>
+                            </div>
+                            <div class="nombreNav">
+                                <a href="{{ url('/places') }}" class="linkNav">PLACES</a>
+                            </div>                        
                         </div>
-                    @endif
-                @else
-                    <div class="navElement">
-                        <div class="emojiNav">
-                            <img src="../../../imatges/chincheta.png" class="imagenNav"></img>
+                        <div class="navElement">
+                            <div class="emojiNav">
+                                <img src="../../../imatges/posts.png" class="imagenNav"></img>
+                            </div>
+                            <div class="nombreNav">
+                                <a href="{{ url('/files') }}" class="linkNav">POSTS</a>
+                            </div> 
                         </div>
-                        <div class="nombreNav">
-                            <a href="{{ url('/places') }}" class="linkNav">PLACES</a>
-                        </div>                        
-                    </div>
-                    <div class="navElement">
-                        <div class="emojiNav">
-                            <img src="../../../imatges/posts.png" class="imagenNav"></img>
+                        <div class="navElement">
+                            <div class="emojiNav">
+                                <img src="../../../imatges/reseña.png" class="imagenNav"></img>
+                            </div>
+                            <div class="nombreNav">
+                                <a href="{{ url('/places') }}" class="linkNav">REVIEWS</a>
+                            </div> 
                         </div>
-                        <div class="nombreNav">
-                            <a href="{{ url('/places') }}" class="linkNav">POSTS</a>
-                        </div> 
-                    </div>
-                    <div class="navElement">
-                        <div class="emojiNav">
-                            <img src="../../../imatges/reseña.png" class="imagenNav"></img>
+                        <div class="navElement">
+                            <div class="emojiNav">
+                                <img src="../../../imatges/contactos.png" class="imagenNav"></img>
+                            </div>
+                            <div class="nombreNav">
+                                <a href="{{ url('/places') }}" class="linkNav">MY CONTACTS LIST</a>
+                            </div>
                         </div>
-                        <div class="nombreNav">
-                            <a href="{{ url('/places') }}" class="linkNav">REVIEWS</a>
-                        </div> 
-                    </div>
-                    <div class="navElement">
-                        <div class="emojiNav">
-                            <img src="../../../imatges/contactos.png" class="imagenNav"></img>
-                        </div>
-                        <div class="nombreNav">
-                            <a href="{{ url('/places') }}" class="linkNav">MY CONTACTS LIST</a>
-                        </div>
-                    </div>
-                    
-                    <div class="navElement">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }}
-                        </a>
-
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
+                        
+                        <div class="navElement">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }}
                             </a>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
                         </div>
-                    </div>
-                @endguest
-            </ul>
+                    @endguest
+                </ul>
+            </div>
         </div>
     </nav>
 
