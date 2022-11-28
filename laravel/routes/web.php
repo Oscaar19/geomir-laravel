@@ -44,9 +44,6 @@ Route::get('/', function (Request $request) {
 Route::resource('files', FileController::class)
     ->middleware(['auth']);
 Route::resource('places', PlacesController::class)
-<<<<<<< HEAD
-    ->middleware(['auth', 'role.any:1,2,3']);
-=======
     ->middleware(['auth']);
 
 Route::get('/language/{locale}', [App\Http\Controllers\LanguageController::class, 'language']);
@@ -55,5 +52,4 @@ Route::post('/places/{place}/favourites', [App\Http\Controllers\PlacesController
 Route::delete('/places/{place}/favourites', [App\Http\Controllers\PlacesController::class, 'unfavourite'])->name('places.unfavourite');
 
 
->>>>>>> b0.2
  
