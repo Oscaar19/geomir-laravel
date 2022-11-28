@@ -11,10 +11,10 @@
                        <thead>
                            <tr>
                                <td scope="col">ID</td>
-                               <td scope="col">Filepath</td>
-                               <td scope="col">Filesize</td>
-                               <td scope="col">Created</td>
-                               <td scope="col">Updated</td>
+                               <td scope="col">{{ __('Filepath') }}</td>
+                               <td scope="col">{{ __('Filesize') }}</td>
+                               <td scope="col">{{ __('Created') }}</td>
+                               <td scope="col">{{ __('Updated') }}</td>
                            </tr>
                        </thead>
                        <tbody>

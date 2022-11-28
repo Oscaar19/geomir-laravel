@@ -17,13 +17,14 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
-            $table->integer('file_id');
+            $table->unsignedBigInteger('file_id');
             $table->foreign('file_id')->references('id')->on('files');
             $table->string('latitude');
             $table->string('longitude');
             $table->integer('category_id')->nullable();
-            $table->integer('visibility_id')->nullable();
-            $table->integer('author_id');
+            $table->unsignedBigInteger('visibility_id');
+            $table->foreign('visibility_id')->references('id')->on('visibilities');
+            $table->unsignedBigInteger('author_id');
             $table->foreign('author_id')->references('id')->on('users');
             $table->timestamps();
         });

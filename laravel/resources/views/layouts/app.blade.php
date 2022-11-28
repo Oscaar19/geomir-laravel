@@ -16,66 +16,93 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+<body class="maxWidthMaxHeight colorFondo">
+    <nav class="navFijo">
+        <div class="navLogo">
+            <a id="aLogo" href="{{ url('/dashboard') }}">
+                <img src="../../../imatges/logo.PNG" class="imagenNav">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div id="navToolbar">
+            <div id="multiLanguage">@include('partials.language-switcher')</div>
+            <div class="navDiv">
+                    <!-- Authentication Links -->
+                    @guest
+                        @if (Route::has('register'))
+                            <div class="registerButton centrar">
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            </div>
+                        @endif
+                    @else
+                        <div class="navElement">
+                            <div class="emojiNav">
+                                <img src="../../../imatges/chincheta.png" class="imagenNav"></img>
+                            </div>
+                            <div class="nombreNav">
+                                <a href="{{ url('/places') }}" class="linkNav">LLOCS</a>
+                            </div>                        
+                        </div>
+                        <div class="navElement">
+                            <div class="emojiNav">
+                                <img src="../../../imatges/archivo.png" class="imagenNav"></img>
+                            </div>
+                            <div class="nombreNav">
+                                <a href="{{ url('/files') }}" class="linkNav">FITXERS</a>
+                            </div>                        
+                        </div>
+                        <div class="navElement">
+                            <div class="emojiNav">
+                                <img src="../../../imatges/favoritos.png" class="imagenNav"></img>
+                            </div>
+                            <div class="nombreNav">
+                                <a href="{{ url('/files') }}" class="linkNav">LLOCS PREFERITS</a>
+                            </div> 
+                        </div>
+                        <div class="navElement">
+                            <div class="emojiNav">
+                                <img src="../../../imatges/reseña.png" class="imagenNav"></img>
+                            </div>
+                            <div class="nombreNav">
+                                <a href="{{ url('/places') }}" class="linkNav">RESSENYES</a>
+                            </div> 
+                        </div>
+                        <div class="navElement">
+                            <div class="emojiNav">
+                                <img src="../../../imatges/contactos.png" class="imagenNav"></img>
+                            </div>
+                            <div class="nombreNav">
+                                <a href="{{ url('/places') }}" class="linkNav">LA MEVA AGENDA</a>
+                            </div>
+                        </div>
+                        
+                        <div class="navElement">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }}
+                            </a>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </div>
+                    @endguest
+                </ul>
             </div>
-        </nav>
+        </div>
+    </nav>
 
-        <main class="py-4">
-            @include('flash')
-            @yield('content')
-        </main>
-    </div>
+    <main class="centrar">
+        @yield('content')
+    </main>
 </body>
 </html>

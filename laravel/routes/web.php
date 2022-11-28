@@ -5,6 +5,7 @@ use App\Http\Controllers\MailController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\PlacesController;
+use App\Http\Controllers\PlaceCrudController;
 
 
 
@@ -37,11 +38,22 @@ Route::get('/', function (Request $request) {
     $message = 'Loading welcome page';
     Log::info($message);
     $request->session()->flash('info', $message);
-    return view('welcome');
+    return view('auth/login');
 });
-Route::resource('files', FileController::class)
-    ->middleware(['auth', 'role.any:2,3']);
 
+Route::resource('files', FileController::class)
+    ->middleware(['auth']);
 Route::resource('places', PlacesController::class)
+<<<<<<< HEAD
     ->middleware(['auth', 'role.any:1,2,3']);
+=======
+    ->middleware(['auth']);
+
+Route::get('/language/{locale}', [App\Http\Controllers\LanguageController::class, 'language']);
+
+Route::post('/places/{place}/favourites', [App\Http\Controllers\PlacesController::class, 'favourite'])->name('places.favourite');
+Route::delete('/places/{place}/favourites', [App\Http\Controllers\PlacesController::class, 'unfavourite'])->name('places.unfavourite');
+
+
+>>>>>>> b0.2
  

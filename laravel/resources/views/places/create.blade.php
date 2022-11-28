@@ -1,40 +1,46 @@
 @extends('layouts.app')
 
-@section('content')
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
 
-    <form method="post" action="{{ route('places.store') }}" enctype="multipart/form-data">
-        @csrf
-        <div class="form-group">
-            <label for="name">Place:</label>
-            <input type="text" class="form-control" name="name"/>
-        </div>
-        <div class="form-group">
-            <label for="description">Description:</label>
-            <input type="text" class="form-control" name="description"/>
-        </div>
-        <div class="form-group">
-            <label for="latitude">Latitude:</label>
-            <input type="text" class="form-control" name="latitude"/>
-        </div>
-        <div class="form-group">
-            <label for="longitude">Longitude:</label>
-            <input type="text" class="form-control" name="longitude"/>
-        </div>
-        <div class="form-group">
-                <label for="upload">Foto:</label>
-                <input type="file" class="form-control" name="upload"/>
-        </div>   
-        <button type="submit" class="btn btn-primary">Create</button>
-        <button type="reset" class="btn btn-secondary">Reset</button>
-    </form>
+@section('content')
+
+
+
+    <div class="divCreate">
+        <form id="create" class="maxWidthMaxHeight" method="post" action="{{ route('places.store') }}" enctype="multipart/form-data">
+            @csrf
+            @vite('resources/js/places/create.js')
+            <div id="name" class="divInput centrar marginTop">
+                <input class="inputBackground" placeholder="Name" type="text" class="form-control" name="name"/>
+                <div class="error alert alert-danger alert-dismissible fade"></div>
+            </div>
+            <div id="description"  class="divInput centrar marginTop">
+                <input class="inputBackground" placeholder="Description" type="text" class="form-control" name="description"/>
+                <div class="error alert alert-danger alert-dismissible fade"></div>
+            </div>
+            <div id="latitude"  class="divInput centrar marginTop">
+                <input class="inputBackground" placeholder="Latitude" type="text" class="form-control" name="latitude"/>
+                <div class="error alert alert-danger alert-dismissible fade"></div>
+            </div>
+            <div id="longitude"  class="divInput centrar marginTop">
+                <input class="inputBackground" placeholder="Longitude" type="text" class="form-control" name="longitude"/>
+                <div class="error alert alert-danger alert-dismissible fade"></div>
+            </div>
+            <div class="divInput centrar marginTop">               
+                <select class="inputBackground"  name="visibility_id" class="form-control">
+                    @foreach($visibilities as $visibility)
+                        <option value="{{__($visibility->id)}}">{{__($visibility->name)}}</option>
+                    @endforeach 
+                </select>
+                                                
+            </div>
+            <div class="divInput centrar marginTop">
+                <input class="inputBackground"  placeholder="Photo" type="file" class="form-control" name="upload"/>
+            </div>
+            <div class="centrar">
+                <button type="submit" class="actionButton marginTop marginBottom">Create</button>
+                <button type="reset" class="actionButton marginTop marginBottom">Reset</button>
+            </div>               
+        </form>
+    </div>
 
 @endsection

@@ -15,9 +15,9 @@
         </div>
     </div>
     @section('content')
-        <h2>{{ __('Resources') }}</h2>
-        <a href="{{ url('/files') }}">{{ __('Files') }}</a>
-        <a href="{{ url('/places') }}">{{ __('Places') }}</a>
+        <div class="centrar">
+            <img src="../../../imatges/mapa.jpg" id="imagenDashboard"></img>
+        </div>
 
     @endsection
 </x-app-layout>

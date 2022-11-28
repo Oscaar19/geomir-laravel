@@ -1,7 +1,555 @@
+*{
+    font-family: Helvetica;
+}
+
 // Body
-$body-bg: #f8fafc;
+$body-bg: #3C6E71;
 
 // Typography
 $font-family-sans-serif: 'Nunito', sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
+
+.navFijo{
+    background-color: #3C6E71;
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.navLogo{
+    width: 40%;
+    height: 100%;
+}
+
+
+
+#navToolbar{
+    height: 100%;
+    width: 65%;
+}
+
+.navbar{
+    position: relative;
+}
+
+.maxWidthMaxHeight{
+    width: 100%;
+    height: 100%;
+}
+
+
+.registerButton{
+    margin-right: 3%;
+    -webkit-border-radius: 3vw;
+    -moz-border-radius: 3vw;
+    border-radius: 3vw;
+    color: #353535;
+    font-family: Helvetica;
+    font-size: 2.3vh;
+    padding: 1vh;
+    background-color: #D9D9D9;
+    border: solid #284B63 0.3vw;
+    text-decoration: none;
+    width: 20vh;
+}
+
+.loginButton{
+    -webkit-border-radius: 32px;
+    -moz-border-radius: 32px;
+    border-radius: 32px;
+    color: #FFFFFF;
+    font-family: Helvetica;
+    font-size: 2.3vh;
+    padding: 1vh;
+    background-color: #284B63;
+    border: solid #969797 3px;
+    text-decoration: none;
+    width: 20vh;
+}
+
+.actionButton{
+    margin-right: 3%;
+    -webkit-border-radius: 3vw;
+    -moz-border-radius: 3vw;
+    border-radius: 3vw;
+    color: #353535;
+    font-family: Helvetica;
+    font-size: 2.3vh;
+    padding: 1vh;
+    background-color: #D9D9D9;
+    border: solid #284B63 0.3vw;
+    text-decoration: none;
+    width: 20vh;
+}
+
+.actionButton:hover{
+    color: #FFFFFF;
+    background-color: #353535;
+}
+
+.centrar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginContainer{
+    background-color: #3C6E71;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+}
+
+.formContainer{
+    border: solid #FFFFFF 0.3vh;
+    background-color: #D9D9D9;
+    height: 60%;
+    width: 30%;
+}
+
+.messageContainer{
+    height: 100%;
+    width: 35%;
+}
+
+#welcomeMessage{
+    font-size: 9vh;
+    font-family: oblique;
+    color: #353535;
+}
+
+.loginTitleLetter{
+    font-size: 4vh;
+    margin-bottom: 2%;
+    margin-top: 1%;
+    height: 17%;
+}
+
+.formInput{
+    margin-bottom: 4%;
+    width: 70%;
+    margin-left: 15%;
+}
+
+.card-body{
+    background-color: #D9D9D9;
+}
+
+.card-body{
+    width: 100%;
+    height: 80%;
+}
+
+#multiLanguage{
+    width: 98%;
+    height: 30%;
+    margin-right: 2%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.maxHeight{
+    height: 100%;
+}
+
+.navDiv{
+    height: 70%;
+    margin-right: 2%;
+    margin-bottom: 1%;
+    margin-top: 2%;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.navLogo{
+    margin-left: 2%;
+    width: 20%;
+    height: 70%;
+}
+
+.navElement{
+    height: 100%;
+    width: 20%;
+    margin: 0%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+}
+
+.emojiNav{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 80%;
+}
+
+.nombreNav{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 20%;
+}
+
+.imagenNav{
+    width: 40%;
+    height: 100%;
+}
+
+.linkNav{
+    color: #353535;
+    font-family: helvetica;
+}
+
+.linkNav:hover{
+    color: #284B63;
+}
+
+.imgShow{
+    width: 30%;
+    height: 30%;
+}
+
+.contenidor{
+    background-color: #3C6E71;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+
+.wrapClass{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.imgUser{
+    margin-left: 5%;
+    width: 60%;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+}
+
+.divPlace{
+    border: solid #353535;
+    background-color: #284B63;
+    width: 50%;
+    height: 20vw;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+    display: flex;
+    justify-content: flex-start;
+}
+#addPlace{
+    width: 80%;
+    margin-top: 1%;
+    height: 5%;
+    margin-bottom: 1%;
+}
+.addButton{
+    -webkit-border-radius: 32px;
+    -moz-border-radius: 32px;
+    border-radius: 32px;
+    color: #353535;
+    font-family: Helvetica;
+    font-size: 2.3vh;
+    padding: 1vh;
+    background-color: #D9D9D9;
+    border: solid #969797 0.3vh;
+    text-decoration: none;
+    width: 20vh;
+}
+
+.addButton:hover{
+    background-color: #284B63;
+    color: #FFFFFF;
+}
+
+.imgFav{
+    width: 100%;
+    height: 100%;
+}
+
+.standardButton{
+    width: 20%;
+    border: 0 transparent;
+    background-color: transparent;
+}
+
+.aPlace{
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: #D9D9D9;
+    display: flex;
+}
+.aPlace:hover{
+    color: #D9D9D9;
+}
+
+#aLogo{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.userInfo{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-left: 2%;
+    margin-top: 2%;
+    height: 60%;
+    width: 28%;
+}
+
+.placeInfo{
+    width: 68%;
+    margin-right: 2%;
+}
+
+.placePhoto{
+    height: 100%;
+    width: 100%;
+}
+
+.imgIndex{
+    width: 100%;
+    height: 100%;
+}
+
+.divUserName{
+    color: #D9D9D9;
+    margin-top: 2%;
+    width: 100%;
+    height: 20%;
+}
+
+.userName{
+    text-decoration: dotted;
+    font-size: 1vw;
+}
+
+.userFoto{
+    margin-top: 5%;
+    width: 100%;
+    height: 100%;
+}
+
+.favButton{
+    margin-top: 4%;
+    width: 100%;
+    height: 30%;
+}
+
+.imgPlace{
+    width: 24vw;
+    height: 16vw;
+}
+
+
+
+.placeDescr{
+    border: 0.3vh solid #353535;
+    background-color: #D9D9D9;
+    height: 60%;
+    color: #353535;
+}
+.extraInfo{
+    height: 22%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.infoLatLong{
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+}
+
+.placeLat{
+    height: 50%;
+    width: 100%;
+}
+
+.placeLong{
+    height: 50%;
+    width: 100%;
+}
+
+.listPlaces{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 4%;
+}
+
+#showPhoto{
+    width: 8vw;
+    height: 8vw;
+}
+
+#divInfo{
+    margin-top: 2%;
+    height: 68%;
+    margin-left: 2%;
+    width: 98%; 
+    display: flex;
+}
+
+#divActions{
+    margin-top: 2%;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 2%;
+    height: 28%;
+}
+
+#divUserInfo{
+    height: 100%;
+    width: 30%;
+}
+
+#divPlaceInfo{
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 50%;
+}
+
+#divImg{
+    height: 100%;
+    width: 20%;
+}
+
+.divPlaceName{
+    width: 100%;
+    font-size: 2vw;
+    color: #FFFFFF;
+    text-decoration: dotted;
+    height: 20%;
+}
+
+#divPlaceDescr{
+    width: 100%;
+    height: 50%;
+    background-color: #D9D9D9;
+    color: #353535;
+    border: 0.15vw solid black;
+}
+
+#divPlaceExtra{
+
+    display: flex;
+    width: 100%;
+    height: 5%;
+}
+
+#divPlaceDate{
+    width: 50%;
+}
+
+#divPlaceLoc{
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+}
+
+#divPlaceLong{
+    width: 100%;
+    height: 50%;
+}
+
+#divPlaceLat{
+    width: 100%;
+    height: 50%;
+}
+
+.marginTop{
+    margin-top: 3%;
+}
+
+.divCreate{
+    width: 60%;
+    height: 100%;
+    border: 0.3vw solid #353535;
+    background-color: #FFFFFF;
+}
+
+.divEdit{
+    width: 60%;
+    height: 100%;
+    border: 0.3vw solid #353535;
+    background-color: #D9D9D9;
+}
+
+.userImg{
+    width: 70%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+#placeName{
+    width: 100%;
+    height: 10%;
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.divInput{
+    width: 100%;
+}
+
+.inputBackground{
+    background-color: #FFFFFF !important;
+    width: 60%;
+}
+
+#divPhoto{
+    width: 100%;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+}
+
+.whiteName{
+    color: #FFFFFF;
+    font-size: 1.5vw;
+}
+
+#imagenDashboard{
+    width: 90vw;
+    height: 40vw;
+}
+
+.marginBottom{
+    margin-bottom: 2%;
+}
+
+#editDescription{
+    background-color: #FFFFFF !important;
+    width: 60%;
+    height: 60%;
+}
+
+#imgEdit{
+    width: 60%;
+    height: 60%;
+}
+
