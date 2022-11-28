@@ -16,7 +16,7 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
-<body class="maxWidthMaxHeight">
+<body class="maxWidthMaxHeight colorFondo">
     <nav class="navFijo">
         <div class="navLogo">
             <a id="aLogo" href="{{ url('/places') }}">
@@ -32,7 +32,7 @@
                     <!-- Authentication Links -->
                     @guest
                         @if (Route::has('register'))
-                            <div class="nav-item">
+                            <div class="registerButton centrar">
                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                             </div>
                         @endif
@@ -47,10 +47,10 @@
                         </div>
                         <div class="navElement">
                             <div class="emojiNav">
-                                <img src="../../../imatges/posts.png" class="imagenNav"></img>
+                                <img src="../../../imatges/favoritos.png" class="imagenNav"></img>
                             </div>
                             <div class="nombreNav">
-                                <a href="{{ url('/files') }}" class="linkNav">POSTS</a>
+                                <a href="{{ url('/files') }}" class="linkNav">FAVOURITE PLACES</a>
                             </div> 
                         </div>
                         <div class="navElement">
@@ -93,7 +93,7 @@
         </div>
     </nav>
 
-    <main class="maxWidthMaxHeight centrar">
+    <main class="centrar">
         @yield('content')
     </main>
 </body>

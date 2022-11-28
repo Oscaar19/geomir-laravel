@@ -49,6 +49,7 @@ Route::resource('places', PlacesController::class)
 Route::get('/language/{locale}', [App\Http\Controllers\LanguageController::class, 'language']);
 
 Route::post('/places/{place}/favourites', [App\Http\Controllers\PlacesController::class, 'favourite'])->name('places.favourite');
+Route::delete('/places/{place}/favourites', [App\Http\Controllers\PlacesController::class, 'unfavourite'])->name('places.unfavourite');
 
 
  

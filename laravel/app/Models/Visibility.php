@@ -17,4 +17,8 @@ class Visibility extends Model
         'contacts',
         'private',
     ];
+
+    public function places(){
+        return $this->hasMany(Place::class);
+    }
 }

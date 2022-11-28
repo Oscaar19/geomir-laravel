@@ -9,11 +9,11 @@
         <div class="centrar loginTitleLetter"><b>{{ __('Login') }}</b></div>
 
         <div class="card-body centrar">
-            <form class="maxWidthMaxHeight" method="POST" action="{{ route('login') }}">
+            <form class="maxWidthMaxHeight loginForm" method="POST" action="{{ route('login') }}">
                 @csrf
 
                 <div class="formInput">
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email Address" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                    <input id="email" type="email" class="inputBackground form-control @error('email') is-invalid @enderror" placeholder="Email Address" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                     @error('email')
                         <span class="invalid-feedback" role="alert">
@@ -23,7 +23,7 @@
                 </div>
 
                 <div class="formInput">
-                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" name="password" required autocomplete="current-password">
+                    <input id="password" type="password" class="inputBackground form-control @error('password') is-invalid @enderror" placeholder="Password" name="password" required autocomplete="current-password">
 
                     @error('password')
                         <span class="invalid-feedback" role="alert">
@@ -34,7 +34,7 @@
 
                 <div class="formInput">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                        <input class="inputBackground form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                         <label class="form-check-label" for="remember">
                             {{ __('Remember Me') }}

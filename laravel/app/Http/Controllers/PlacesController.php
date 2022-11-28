@@ -23,7 +23,8 @@ class PlacesController extends Controller
     public function index()
     {
         return view("places.index", [
-            "places" => Place::all()
+            "places" => Place::all(),
+            "files" => File::all(),
         ]);
     }
 
@@ -105,11 +106,21 @@ class PlacesController extends Controller
     {
         $file=File::find($place->file_id);
         $user=User::find($place->author_id);
+
+        $is_fav = false;
+        try {
+            if (Favourite::where('user_id', '=', auth()->user()->id)->where('place_id','=', $place->id)->exists()) {
+                $is_fav = true;
+            }
+        } catch (Exception $error) {
+            $is_fav = false;
+        }
     
         return view("places.show",[
             'place'=> $place,
             'file'=>$file,
             'user'=>$user,
+            'is_fav'=>$is_fav,
         ]);        
          
 
@@ -235,15 +246,15 @@ class PlacesController extends Controller
     public function unfavourite(Place $place)
     {
         $user=User::find($place->author_id);
-        $favourite = Favourite::create([
-            'user_id' => $user->id,
-            'place_id' => $place->id,
+        $favourite = Favourite::where([
+            ['user_id', "=" ,$user->id],
+            ['place_id', "=" ,$place->id],
         ]);
+
+        $favourite->first();
+
+        $favourite->delete();
+
         return redirect()->back();
     }
-
-
-
-    //Hacer una PK en Favourite para que no haya problema con darle varios Favs
-    //Preguntar a Armand como solucionar el unfavourite
 }

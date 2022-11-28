@@ -40,9 +40,21 @@ $line-height-base: 1.6;
     height: 100%;
 }
 
-// .formInput{
-//     margin-bottom: 5%;
-// }
+
+.registerButton{
+    margin-right: 3%;
+    -webkit-border-radius: 3vw;
+    -moz-border-radius: 3vw;
+    border-radius: 3vw;
+    color: #353535;
+    font-family: Helvetica;
+    font-size: 2.3vh;
+    padding: 1vh;
+    background-color: #D9D9D9;
+    border: solid #284B63 0.3vw;
+    text-decoration: none;
+    width: 20vh;
+}
 
 .loginButton{
     -webkit-border-radius: 32px;
@@ -58,61 +70,31 @@ $line-height-base: 1.6;
     width: 20vh;
 }
 
+.actionButton{
+    margin-right: 3%;
+    -webkit-border-radius: 3vw;
+    -moz-border-radius: 3vw;
+    border-radius: 3vw;
+    color: #353535;
+    font-family: Helvetica;
+    font-size: 2.3vh;
+    padding: 1vh;
+    background-color: #D9D9D9;
+    border: solid #284B63 0.3vw;
+    text-decoration: none;
+    width: 20vh;
+}
 
-
-
-
-// .contenedorLogin{
-//     width: 100%;
-//     height: 100%;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-// }
-
-// .maxWidth{
-//     width: 100%;
-// }
+.actionButton:hover{
+    color: #FFFFFF;
+    background-color: #353535;
+}
 
 .centrar{
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
-// .card-header{
-//     width: 100%;
-// }
-
-// .formulario{
-//     width: 100%;
-//     height: 100%;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-// }
-
-// .divRegistro{
-//     display: flex;
-//     width: 100%;
-//     height: 10%;
-
-// }
-
-// .noDotList{
-//     list-style-type: none;
-// }
-
-// #welcomeMessage{
-//     width: 50%;
-//     height: 100%;
-// }
-
-// #formulario{
-//     width: 50%;
-//     height: 100%;
-// }
-
 
 .loginContainer{
     background-color: #3C6E71;
@@ -154,6 +136,10 @@ $line-height-base: 1.6;
 }
 
 .card-body{
+    background-color: #D9D9D9;
+}
+
+.card-body{
     width: 100%;
     height: 80%;
 }
@@ -175,6 +161,7 @@ $line-height-base: 1.6;
     height: 70%;
     margin-right: 2%;
     margin-bottom: 1%;
+    margin-top: 2%;
     width: 100%;
     display: flex;
     justify-content: flex-end;
@@ -234,7 +221,6 @@ $line-height-base: 1.6;
 .contenidor{
     background-color: #3C6E71;
     width: 100%;
-
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -245,10 +231,6 @@ $line-height-base: 1.6;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-}
-
-.divInfo{
-    width: 100%;
 }
 
 .imgUser{
@@ -263,12 +245,12 @@ $line-height-base: 1.6;
     border: solid #353535;
     background-color: #284B63;
     width: 50%;
-    height: 100%;
+    height: 30%;
     margin-left: 5%;
     margin-right: 5%;
     margin-bottom: 2%;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
 }
 #addPlace{
     width: 80%;
@@ -323,9 +305,10 @@ $line-height-base: 1.6;
 }
 
 .userInfo{
+    margin-left: 2%;
     margin-top: 2%;
     height: 100%;
-    width: 30%;
+    width: 28%;
 }
 
 .placeInfo{
@@ -334,9 +317,8 @@ $line-height-base: 1.6;
 }
 
 .placePhoto{
-    margin-top: 4%;
-    height: 50%;
-    width: 30%;
+    height: 100%;
+    width: 100%;
 }
 
 .imgIndex{
@@ -372,10 +354,7 @@ $line-height-base: 1.6;
     height: 10vw;
 }
 
-.placeName{
-    margin-top: 2%;
-    height: 10%;
-}
+
 
 .placeDescr{
     border: 0.3vh solid #353535;
@@ -407,6 +386,139 @@ $line-height-base: 1.6;
 
 .listPlaces{
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
+#showPhoto{
+    width: 8vw;
+    height: 8vw;
+}
+
+#divInfo{
+    margin-top: 2%;
+    height: 68%;
+    margin-left: 2%;
+    width: 98%; 
+    display: flex;
+}
+
+#divActions{
+    margin-top: 2%;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 2%;
+    height: 28%;
+}
+
+#divUserInfo{
+    height: 100%;
+    width: 30%;
+}
+
+#divPlaceInfo{
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 50%;
+}
+
+#divImg{
+    height: 100%;
+    width: 20%;
+}
+
+.divPlaceName{
+    width: 100%;
+    font-size: 2vw;
+    color: #FFFFFF;
+    text-decoration: dotted;
+    height: 20%;
+}
+
+#divPlaceDescr{
+    width: 100%;
+    height: 100%;
+    background-color: #D9D9D9;
+    color: #353535;
+    border: 0.15vw solid black;
+}
+
+#divPlaceExtra{
+
+    display: flex;
+    width: 100%;
+    height: 5%;
+}
+
+#divPlaceDate{
+    width: 50%;
+}
+
+#divPlaceLoc{
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+}
+
+#divPlaceLong{
+    width: 100%;
+    height: 50%;
+}
+
+#divPlaceLat{
+    width: 100%;
+    height: 50%;
+}
+
+.marginTop{
+    margin-top: 3%;
+}
+
+.divCreate{
+    width: 60%;
+    height: 100%;
+    border: 0.3vw solid #353535;
+    background-color: #FFFFFF;
+}
+
+.userImg{
+    width: 70%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+#placeName{
+    width: 100%;
+    height: 10%;
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.divInput{
+    width: 100%;
+}
+
+.inputBackground{
+    background-color: #FFFFFF !important;
+    width: 60%;
+}
+
+#divPhoto{
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.whiteName{
+    color: #FFFFFF;
+    font-size: 1.5vw;
+}
 
