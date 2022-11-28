@@ -42,9 +42,9 @@ Route::get('/', function (Request $request) {
 });
 
 Route::resource('files', FileController::class)
-    ->middleware(['auth', 'permission:files']);
+    ->middleware(['auth']);
 Route::resource('places', PlacesController::class)
-    ->middleware(['auth', 'permission:places']);
+    ->middleware(['auth']);
 
 Route::get('/language/{locale}', [App\Http\Controllers\LanguageController::class, 'language']);
 

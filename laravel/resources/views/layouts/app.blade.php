@@ -19,7 +19,7 @@
 <body class="maxWidthMaxHeight colorFondo">
     <nav class="navFijo">
         <div class="navLogo">
-            <a id="aLogo" href="{{ url('/places') }}">
+            <a id="aLogo" href="{{ url('/dashboard') }}">
                 <img src="../../../imatges/logo.PNG" class="imagenNav">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -42,7 +42,15 @@
                                 <img src="../../../imatges/chincheta.png" class="imagenNav"></img>
                             </div>
                             <div class="nombreNav">
-                                <a href="{{ url('/places') }}" class="linkNav">PLACES</a>
+                                <a href="{{ url('/places') }}" class="linkNav">LLOCS</a>
+                            </div>                        
+                        </div>
+                        <div class="navElement">
+                            <div class="emojiNav">
+                                <img src="../../../imatges/archivo.png" class="imagenNav"></img>
+                            </div>
+                            <div class="nombreNav">
+                                <a href="{{ url('/files') }}" class="linkNav">FITXERS</a>
                             </div>                        
                         </div>
                         <div class="navElement">
@@ -50,7 +58,7 @@
                                 <img src="../../../imatges/favoritos.png" class="imagenNav"></img>
                             </div>
                             <div class="nombreNav">
-                                <a href="{{ url('/files') }}" class="linkNav">FAVOURITE PLACES</a>
+                                <a href="{{ url('/files') }}" class="linkNav">LLOCS PREFERITS</a>
                             </div> 
                         </div>
                         <div class="navElement">
@@ -58,7 +66,7 @@
                                 <img src="../../../imatges/reseña.png" class="imagenNav"></img>
                             </div>
                             <div class="nombreNav">
-                                <a href="{{ url('/places') }}" class="linkNav">REVIEWS</a>
+                                <a href="{{ url('/places') }}" class="linkNav">RESSENYES</a>
                             </div> 
                         </div>
                         <div class="navElement">
@@ -66,7 +74,7 @@
                                 <img src="../../../imatges/contactos.png" class="imagenNav"></img>
                             </div>
                             <div class="nombreNav">
-                                <a href="{{ url('/places') }}" class="linkNav">MY CONTACTS LIST</a>
+                                <a href="{{ url('/places') }}" class="linkNav">LA MEVA AGENDA</a>
                             </div>
                         </div>
                         

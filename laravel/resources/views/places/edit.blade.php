@@ -5,41 +5,39 @@
 @endsection
 
 @section('content')
-    <img class="img-fluid" src="{{ asset('storage/'.$file->filepath) }}" title="Image preview"/>
+<div class="divEdit">
     <form method="POST" action="{{ route('places.update', $place) }}" enctype="multipart/form-data">
         @csrf
         @method("PUT")
-        <div class="form-group">
-            <label for="name">{{ __('Name') }}</label>
-            <input type="text" id="name" name="name" class="form-control" value="{{ $place->name }}" />
-        </div>
-        <div class="form-group">
-            <label for="description">{{ __('Description') }}</label>
-            <textarea id="description" name="description" class="form-control">{{ $place->description }}</textarea>
-        </div>
-        <div class="form-group">
-            <label for="upload">{{ __('File') }}</label>
-            <input type="file" id="upload" name="upload" class="form-control" />
-        </div>
-        <div class="form-group">            
-                <label for="latitude">{{ __('Latitude') }}</label>
-                <input type="text" id="latitude" name="latitude" class="form-control"
-                    value="{{ $place->latitude }}"/>
-        </div>
-        <div class="form-group">            
-            <label for="longitude">{{ __('Longitude') }}</label>
-            <input type="text" id="longitude" name="longitude" class="form-control"
-                value="{{ $place->longitude }}"/>
-        </div>
-        <div>
-            <label for="visibility_id">Visibility</label>
-            <select name="visibility_id" class="form-control">
-                @foreach($visibilities as $visibility)
-                    <option value="{{__($visibility->id)}}">{{__($visibility->name)}}</option>
-                @endforeach 
-            </select>                                   
-        </div>
-        <button type="submit" class="btn btn-primary">{{ __('Update') }}</button>
-        <button type="reset" class="btn btn-secondary">{{ __('Reset') }}</button>
+        <div class="divInput centrar marginTop">
+                <input class="inputBackground" type="text" class="form-control" name="name" value="{{ $place->name }}" />
+            </div>
+            <div class="divInput centrar marginTop">
+                <textarea id="editDescription" name="description" class="form-control">{{ $place->description }}</textarea>
+            </div>
+            <div class="divInput centrar marginTop">
+                <input class="inputBackground" type="text" class="form-control" name="latitude" value="{{ $place->latitude }}"/>
+            </div>
+            <div class="divInput centrar marginTop">
+                <input class="inputBackground" type="text" class="form-control" name="longitude" value="{{ $place->longitude }}"/>
+            </div>
+            <div class="divInput centrar marginTop">               
+                <select class="inputBackground"  name="visibility_id" class="form-control">
+                    @foreach($visibilities as $visibility)
+                        <option value="{{__($visibility->id)}}">{{__($visibility->name)}}</option>
+                    @endforeach 
+                </select>                           
+            </div>
+            <div class="divInput centrar marginTop">
+                <input class="inputBackground"  placeholder="Photo" type="file" class="form-control" name="upload"/>
+            </div>
+            <div id="imgEdit">
+                <img src="{{ asset("storage/{$file->filepath}") }}"/>
+            </div>
+            <div class="centrar">
+                <button type="submit" class="actionButton marginTop marginBottom">{{ __('Update') }}</button>
+                <button type="reset" class="actionButton marginTop marginBottom">{{ __('Reset') }}</button>
+            </div>
     </form>
+</div>
 @endsection

@@ -15,6 +15,15 @@ use Illuminate\Support\Facades\Log;
 
 class PlacesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:places.list')->only('index');
+        $this->middleware('permission:places.create')->only(['create','store']);
+        $this->middleware('permission:places.read')->only('show');
+        $this->middleware('permission:places.update')->only(['edit','update']);
+        $this->middleware('permission:places.delete')->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      *

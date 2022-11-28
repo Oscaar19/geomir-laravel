@@ -10,7 +10,7 @@
             <div class="divPlace">
                 <div class="userInfo">
                     <div class="divUserName centrar"><b>@</b><b class="userName">{{ $place->author->name }}</b></div>
-                    <div class="userFoto centrar" title="Go to the place"><img src="../../../imatges/usuario.png" class="imgIndex"></div>
+                    <div class="userFoto centrar"><img src="../../../imatges/usuario.png" class="imgIndex"></div>
                 </div>
                 <div class="userImg">
                     <div id="placeName">

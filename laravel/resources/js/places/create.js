@@ -21,10 +21,8 @@ form.addEventListener("submit", function( event ) {
    let rules = {
        "name": "required",
        "description": "required",
-       "upload": "required",
        "latitude": "required",
        "longitude": "required",
-       "visibility_id": "required",
    }
    let validation = new Validator(data, rules)
    // Validate fields
@@ -34,12 +32,15 @@ form.addEventListener("submit", function( event ) {
    } else {
         // Get error messages
         let errors = validation.errors.all()
-        console.log(errors)
+        //console.log(errors);
+        console.log("aaaa)")
         // Show error messages
         for(let inputName in errors) {
+
+            console.log(inputName)
             let campo = document.querySelector('#'+inputName);
 
-            campo.querySelector('.error').classList.remove('show');
+            campo.querySelector('.error').classList.add('show');
             campo.querySelector('.error').innerHTML = errors[inputName];
             
         }

@@ -32,7 +32,7 @@
                 </div>
             </div>
             <div id="divImg">
-                <img class="" src="{{ asset("storage/{$file->filepath}") }}" />
+                <img class="img-fluid" src="{{ asset("storage/{$file->filepath}") }}" />
             </div>
         </div>
         <div id="divActions">
