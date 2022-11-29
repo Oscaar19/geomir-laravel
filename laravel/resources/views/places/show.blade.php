@@ -24,25 +24,29 @@
                 <div class="centrar divPlaceName"><p>{{ $place->name }}</p></div>
                 <div id="divPlaceDescr"><p>{{ $place->description }}</p></div>
                 <div id="divPlaceExtra">
-                    <div id="divPlaceDate"><p>{{ $place->created_at }}</p></div>
+                    <div id="divPlaceDate"><b>{{ $place->created_at }}</b></div>
                     <div id="divPlaceLoc">
-                        <div id="divPlaceLong"><p>Latitud {{ $place->latitude }}</p></div>
-                        <div id="divPlaceLat"><p>Longitud {{ $place->longitude }}</p></div>
+                        <div id="divPlaceLong"><b>Latitud {{ $place->latitude }}</b></div>
+                        <div id="divPlaceLat"><b>Longitud {{ $place->longitude }}</b></div>
                     </div>
                 </div>
             </div>
-            <div id="divImg">
+            <div id="divImg" class="centrar">
                 <img class="img-fluid" src="{{ asset("storage/{$file->filepath}") }}" />
             </div>
         </div>
         <div id="divActions">
-            <a class="actionButton centrar" href="{{ route('places.edit',$place) }}">Edita</a>
+            <div>
+                <a class="actionButton centrar" href="{{ route('places.edit',$place) }}">Edita</a>
+            </div>
             <form method="post" action="{{ route('places.destroy',$place) }}" enctype="multipart/form-data">
                 @csrf
                 @method('DELETE')
                 <button class="actionButton">Eliminar</button>
             </form>
-            <a class="actionButton centrar" href="{{ route('places.index') }}">Torna enrere</a>
+            <div>
+                <a class="actionButton centrar" href="{{ route('places.index') }}">Torna enrere</a>
+            </div>
         </div>
         @include('flash')
     </div>           

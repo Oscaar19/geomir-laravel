@@ -19,10 +19,10 @@ form.addEventListener("submit", function( event ) {
        "visibility_id": document.getElementsByName("visibility_id")[0].value,
    }
    let rules = {
-       "name": "required",
-       "description": "required",
-       "latitude": "required",
-       "longitude": "required",
+        "name": "required|max:255",
+        "description": "required|max:255",
+        "latitude": "required|numeric",
+        "longitude": "required|numeric",
    }
    let validation = new Validator(data, rules)
    // Validate fields
