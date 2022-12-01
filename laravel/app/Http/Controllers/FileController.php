@@ -158,8 +158,8 @@ class FileController extends Controller
             $fullPath = \Storage::disk('public')->path($filePath);
             \Log::debug("File saved at {$fullPath}");
             // Desar dades a BD
-            $file-> filePath = $filePath;
-            $file-> fileSize = $fileSize;
+            $file-> filepath = $filePath;
+            $file-> filesize = $fileSize;
             $file -> save();
             \Log::debug("DB storage OK");
             // Patró PRG amb missatge d'èxit

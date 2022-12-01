@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\File;
+
 
 class FileController extends Controller
 {
@@ -14,7 +16,11 @@ class FileController extends Controller
      */
     public function index()
     {
-        //
+        $files=File::all();
+        return response()->json([
+            "success"=> true,
+            "data"=>$files  
+        ]);
     }
 
     /**
@@ -45,6 +51,11 @@ class FileController extends Controller
         );
     
         if (\Storage::disk('public')->exists($filePath)) {
+            $fullPath = \Storage::disk('public')->path($filePath);
+            $file = File::create([
+                'filepath' => $filePath,
+                'filesize' => $fileSize,
+            ]);
             return response()->json([
                 'success' => true,
                 'data'    => $file
@@ -65,6 +76,13 @@ class FileController extends Controller
      */
     public function show($id)
     {
+        $file=File::find($id);
+        if ($file==null){
+            return response()->json([
+                'success' => false,
+                'message' => "File not found"
+            ], 404);
+        }
         if (\Storage::disk('public')->exists($file->filepath))
         {
             return response()->json([
@@ -90,6 +108,13 @@ class FileController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $file=File::find($id);
+        if ($file==null){
+            return response()->json([
+                'success' => false,
+                'message' => "File not found"
+            ], 404);
+        }
         // Validar fitxer
         $validatedData = $request->validate([
             'upload' => 'required|mimes:gif,jpeg,jpg,png|max:1024'
@@ -110,10 +135,13 @@ class FileController extends Controller
         );
 
         if (\Storage::disk('public')->exists($filePath)) {
+            $file-> filepath = $filePath;
+            $file-> filesize = $fileSize;
+            $file -> save();
             return response()->json([
                 'success' => true,
                 'data'    => $file
-            ], 201);
+            ], 200);
         } else {
             return response()->json([
                 "success" => false,
@@ -130,6 +158,14 @@ class FileController extends Controller
      */
     public function destroy($id)
     {
+        $file=File::find($id);
+
+        if ($file==null){
+            return response()->json([
+                'success' => false,
+                'message' => "File not found"
+            ], 404);
+        }
         \Storage::disk('public')->exists($file->filepath);
         $file->delete();
 
@@ -140,12 +176,10 @@ class FileController extends Controller
             ], 200);
         }
         else{
-            return redirect()->route('files.show',$file)
-                ->with('error', 'ERROR deleting file');
+            return response()->json([
+                'success' => false,
+                'message' => "Error deleting file."
+            ], 500);
         }
     }
-}
-
-//Preguntar por el errors[] del update 
-//Preguntar por como hacer el index si no tengo if y else
-//Preguntar que devuelvo en el data de update/destroy,... 
+} 
