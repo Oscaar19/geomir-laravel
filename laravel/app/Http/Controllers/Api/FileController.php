@@ -146,7 +146,7 @@ class FileController extends Controller
             return response()->json([
                 "success" => false,
                 "message" => "Error updating file"
-            ], 421);
+            ], 500);
         }
     }
 
@@ -166,13 +166,14 @@ class FileController extends Controller
                 'message' => "File not found"
             ], 404);
         }
-        \Storage::disk('public')->exists($file->filepath);
+        
         $file->delete();
 
         if (\Storage::disk('public')->exists($file->filepath)){
+            \Storage::disk('public')->delete($file->filepath);
             return response()->json([
                 'success' => true,
-                'data'    => $file
+                'data'    => 'File deleted.'
             ], 200);
         }
         else{

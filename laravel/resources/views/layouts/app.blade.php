@@ -104,5 +104,9 @@
     <main class="centrar">
         @yield('content')
     </main>
+
+    <footer id="geomirInfo">
+        <a href="{{ url('/aboutme') }}">ABOUT US</a>
+    </footer>
 </body>
 </html>
