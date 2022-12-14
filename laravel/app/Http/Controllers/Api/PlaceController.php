@@ -50,6 +50,7 @@ class PlaceController extends Controller
         $latitude    = $request->get('latitude');
         $longitude   = $request->get('longitude');
         $visibility_id  = $request->get('visibility_id');
+        
 
         // Desar fitxer al disc i inserir dades a BD
         $file = new File();

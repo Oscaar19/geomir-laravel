@@ -8,11 +8,15 @@ use Tests\TestCase;
 use Illuminate\Http\UploadedFile;
 
 use App\Models\User;
+use Laravel\Sanctum\Sanctum;
 
 
 
 class PlaceTest extends TestCase
 {
+
+    public static User $testUser;
+
     public function test_place_list()
     {
         // List all files using API web service
@@ -35,6 +39,11 @@ class PlaceTest extends TestCase
             "password"  => "12345678"
         ]);
 
+        Sanctum::actingAs(
+            self::$testUser,
+            ['*'] // grant all abilities to the token
+        );
+
         // Create fake file
         $name  = "avatar.png";
         $size = 500; /*KB*/
@@ -46,6 +55,7 @@ class PlaceTest extends TestCase
             'description' => 'Estadio del FCB',
             'latitude'    => '6.44',
             'longitude'   => '6.44',
+            // 'author_id'      => self::$testUser->id,
             'visibility_id'   => '1',
 
         ]);

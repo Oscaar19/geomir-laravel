@@ -20,7 +20,7 @@ use App\Http\Controllers\Api\PlaceController;
 |
 */
 
-Route::apiResource('places', PlaceController::class)->middleware('auth:sanctum');
+Route::apiResource('places', PlaceController::class);
  
 Route::apiResource('files', FileController::class);
 
