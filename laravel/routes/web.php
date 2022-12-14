@@ -51,5 +51,7 @@ Route::get('/language/{locale}', [App\Http\Controllers\LanguageController::class
 Route::post('/places/{place}/favourites', [App\Http\Controllers\PlacesController::class, 'favourite'])->name('places.favourite');
 Route::delete('/places/{place}/favourites', [App\Http\Controllers\PlacesController::class, 'unfavourite'])->name('places.unfavourite');
 
-
+Route::get('/aboutme', function () {
+    return view('aboutme');
+ });
  

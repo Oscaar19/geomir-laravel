@@ -77,7 +77,7 @@
                                 <a href="{{ url('/places') }}" class="linkNav">LA MEVA AGENDA</a>
                             </div>
                         </div>
-                        
+                        <a href="/aboutme">QUI SOM?</a>
                         <div class="navElement">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
@@ -104,9 +104,5 @@
     <main class="centrar">
         @yield('content')
     </main>
-
-    <footer id="geomirInfo">
-        <a href="{{ url('/aboutme') }}">ABOUT US</a>
-    </footer>
 </body>
 </html>
