@@ -77,7 +77,14 @@
                                 <a href="{{ url('/places') }}" class="linkNav">LA MEVA AGENDA</a>
                             </div>
                         </div>
-                        <a href="/aboutme">QUI SOM?</a>
+                        <div class="navElement">
+                            <div class="emojiNav">
+                                <img src="../../../imatges/info.png" class="imagenNav"></img>
+                            </div>
+                            <div class="nombreNav">
+                                <a href="/aboutme" class="linkNav">SOBRE GEOMIR</a>
+                            </div>
+                        </div>
                         <div class="navElement">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
