@@ -35,8 +35,8 @@ class PlaceController extends Controller
     {
         // Validar dades del formulari
         $validatedData = $request->validate([
-            'name'        => 'required',
-            'description' => 'required',
+            'name'        => 'required|string',
+            'description' => 'required|string',
             'upload'      => 'required|mimes:gif,jpeg,jpg,png,mp4|max:2048',
             'latitude'    => 'required',
             'longitude'   => 'required',
@@ -92,7 +92,27 @@ class PlaceController extends Controller
      */
     public function show($id)
     {
-        //
+        $file=File::find($id);
+        if ($file==null){
+            return response()->json([
+                'success' => false,
+                'message' => "File not found"
+            ], 404);
+        }
+        if (\Storage::disk('public')->exists($file->filepath))
+        {
+            return response()->json([
+                'success' => true,
+                'data'    => $file
+            ], 200);
+       
+        }    
+        else{
+            return response()->json([
+                'success'  => false,
+                'message' => 'Error reading file'
+            ], 500);
+        }
     }
 
     /**

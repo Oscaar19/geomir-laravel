@@ -21,6 +21,8 @@ use App\Http\Controllers\Api\PlaceController;
 */
 
 Route::apiResource('places', PlaceController::class);
+
+Route::post('/store', [PlaceController::class, 'store'])->middleware('auth:sanctum');
  
 Route::apiResource('files', FileController::class);
 
