@@ -92,26 +92,19 @@ class PlaceController extends Controller
      */
     public function show($id)
     {
-        $file=File::find($id);
-        if ($file==null){
+        $place=Place::find($id);
+        if (!$place){
             return response()->json([
                 'success' => false,
-                'message' => "File not found"
+                'message' => "Place not found"
             ], 404);
         }
-        if (\Storage::disk('public')->exists($file->filepath))
-        {
-            return response()->json([
-                'success' => true,
-                'data'    => $file
-            ], 200);
-       
-        }    
         else{
             return response()->json([
-                'success'  => false,
-                'message' => 'Error reading file'
-            ], 500);
+                'success' => true,
+                'data'    => $place
+            ], 200);
+       
         }
     }
 

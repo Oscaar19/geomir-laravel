@@ -115,17 +115,15 @@ class PlaceTest extends TestCase
     public function test_place_read(object $place)
     {
         // Read one file
-        $response = $this->getJson("/api/places/{$file->id}");
+        $response = $this->getJson("/api/places/{$place->id}");
         // Check OK response
         $this->_test_ok($response);
-        // Check JSON exact values
-        $response->assertJsonPath("data.filepath",
-            fn ($filepath) => !empty($filepath)
-        );
+       
     }
     
     public function test_place_read_notfound()
     {
+        Sanctum::actingAs(self::$testUser);
         $id = "not_exists";
         $response = $this->getJson("/api/places/{$id}");
         $this->_test_notfound($response);
@@ -229,12 +227,6 @@ class PlaceTest extends TestCase
     
     protected function _test_notfound($response)
     {
-        // Eliminem l'usuari al darrer test
-        self::$testUser->delete();
-        // Comprovem que s'ha eliminat
-        $this->assertDatabaseMissing('users', [
-            'email' => self::$testUser->email,
-        ]);
         // Check JSON response
         $response->assertStatus(404);
         // Check JSON properties
@@ -245,6 +237,12 @@ class PlaceTest extends TestCase
         // Check JSON dynamic values
         $response->assertJsonPath("message",
             fn ($message) => !empty($message) && is_string($message)
-        );       
+        );  
+        // Eliminem l'usuari al darrer test
+        //self::$testUser->delete(); 
+        // Comprovem que s'ha eliminat
+        //$this->assertDatabaseMissing('users', [
+        //    'email' => self::$testUser->email,
+        //]);    
     }
 }
