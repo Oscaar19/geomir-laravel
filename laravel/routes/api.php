@@ -23,6 +23,9 @@ use App\Http\Controllers\Api\PlaceController;
 Route::apiResource('places', PlaceController::class);
 
 Route::post('/store', [PlaceController::class, 'store'])->middleware('auth:sanctum');
+
+Route::post('/places/{place}/favourites', [PlaceController::class, 'favourite'])->middleware('auth:sanctum');
+Route::delete('/places/{place}/favourites', [PlaceController::class, 'unfavourite'])->middleware('auth:sanctum');
  
 Route::apiResource('files', FileController::class);
 

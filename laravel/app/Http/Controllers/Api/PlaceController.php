@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Place;
 use App\Models\File;
+use App\Models\Favourite;
 
 
 
@@ -58,7 +59,6 @@ class PlaceController extends Controller
 
         if ($fileOk) {
             // Desar dades a BD
-            \Log::debug("Saving place at DB...");
             $place = Place::create([
                 'name'        => $name,
                 'description' => $description,
@@ -68,14 +68,12 @@ class PlaceController extends Controller
                 'author_id'   => auth()->user()->id,
                 'visibility_id'  => $visibility_id,
             ]);
-            \Log::debug("DB storage OK");
             // Patró PRG amb missatge d'èxit
             return response()->json([
                 'success' => true,
                 'data'    => $place
             ], 201); 
         } else {
-            \Log::debug("Disk storage FAILS");
             // Patró PRG amb missatge d'error
             return response()->json([
                 'success'  => false,
@@ -117,7 +115,59 @@ class PlaceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $place=Place::find($id);
+
+        if ($place){
+            // Validar dades del formulari
+            $validatedData = $request->validate([
+                'name'        => 'required|string',
+                'description' => 'required|string',
+                'upload'      => 'required|mimes:gif,jpeg,jpg,png,mp4|max:2048',
+                'latitude'    => 'required',
+                'longitude'   => 'required',
+                'visibility_id'   => 'required',
+            ]);
+            
+            // Obtenir dades del formulari
+            $name        = $request->get('name');
+            $description = $request->get('description');
+            $upload      = $request->file('upload');
+            $latitude    = $request->get('latitude');
+            $longitude   = $request->get('longitude');
+            $visibility_id  = $request->get('visibility_id');
+            
+
+            // Desar fitxer al disc i inserir dades a BD
+            $file=File::find($place->file_id);
+            $fileOk = $file->diskSave($upload);
+
+            if ($fileOk) {
+                // Desar dades a BD
+                $place-> name = $name;
+                $place-> description = $description;
+                $place-> latitude = $latitude;
+                $place-> longitude = $longitude;
+                $place-> visibility_id = $visibility_id;
+                $place->save();
+                // Patró PRG amb missatge d'èxit
+                return response()->json([
+                    'success' => true,
+                    'data'    => $place
+                ], 201); 
+            }
+            else{
+                return response()->json([
+                    'success'  => false,
+                    'message' => 'Error storing place'
+                ], 500);
+            }               
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => "Place not found"
+            ], 404);
+           
+        }
     }
 
     /**
@@ -128,6 +178,68 @@ class PlaceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $place=Place::find($id);
+
+        if (!$place){
+            return response()->json([
+                'success' => false,
+                'message' => "Place not found"
+            ], 404);
+        }
+        else{
+            $place->delete();
+            return response()->json([
+                'success' => true,
+                'data'    => 'File deleted.'
+            ], 200);
+       
+        }
+    }
+
+    public function favourite($id)
+    {
+        $place=Place::find($id);
+        if (Favourite::where([['user_id', "=" ,auth()->user()->id],['place_id', "=" ,$place->id],])->exists()) {
+            return response()->json([
+                'success'  => false,
+                'message' => 'The place is already favourite'
+            ], 500);
+        }else{
+            $favourite = Favourite::create([
+                'user_id' => auth()->user()->id,
+                'place_id' => $place->id,
+            ]);
+            return response()->json([
+                'success' => true,
+                'data'    => $favourite
+            ], 201);
+        }        
+    }
+
+    public function unfavourite($id)
+    {
+        $place=Place::find($id);
+        if (Favourite::where([['user_id', "=" ,auth()->user()->id],['place_id', "=" ,$place->id],])->exists()) {
+            $favourite = Favourite::where([
+                ['user_id', "=" ,auth()->user()->id],
+                ['place_id', "=" ,$place->id],
+            ]);
+    
+            $favourite->first();
+    
+            $favourite->delete();
+
+            return response()->json([
+                'success' => true,
+                'data'    => $favourite
+            ], 201);
+        }else{
+            return response()->json([
+                'success'  => false,
+                'message' => 'The place is is not favourite'
+            ], 500);
+            
+        }  
+        
     }
 }

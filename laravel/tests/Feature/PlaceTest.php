@@ -54,8 +54,7 @@ class PlaceTest extends TestCase
         ];
     }
 
-
-    public function test_place_list()
+    public function test_place_first()
     {
         // Desem l'usuari al primer test
         self::$testUser->save();
@@ -63,6 +62,12 @@ class PlaceTest extends TestCase
         $this->assertDatabaseHas('users', [
             'email' => self::$testUser->email,
         ]);
+    }
+
+
+
+    public function test_place_list()
+    {
         // List all files using API web service
         $response = $this->getJson("/api/places");
         // Check OK response
@@ -132,47 +137,47 @@ class PlaceTest extends TestCase
     /**
         * @depends test_place_create
         */
-    public function test_place_update(object $file)
+    public function test_place_update(object $place)
     {
-        // Create fake file
-        $name  = "photo.jpg";
-        $size = 1000; /*KB*/
-        $upload = UploadedFile::fake()->image($name)->size($size);
-        // Upload fake file using API web service
-        $response = $this->putJson("/api/places/{$place->id}", [
-            "upload" => $upload,
-        ]);
+        Sanctum::actingAs(self::$testUser);
+        // Cridar servei web de l'API
+        $response = $this->putJson("/api/places/{$place->id}", self::$validData);
+        // Revisar que no hi ha errors de validació
+        $params = array_keys(self::$validData);
+        $response->assertValid($params);
+                
         // Check OK response
-        $this->_test_ok($response);
-        // Check validation errors
-        $response->assertValid(["upload"]);
-        // Check JSON exact values
-        $response->assertJsonPath("data.filesize", $size*1024);
+        $this->_test_ok($response, 201);
+    
         // Check JSON dynamic values
-        $response->assertJsonPath("data.filepath",
-            fn ($filepath) => str_contains($filepath, $name)
+        $response->assertJsonPath("data.id",
+            fn ($id) => !empty($id)
         );
+        // Read, update and delete dependency!!!
+        $json = $response->getData();
+        return $json->data;
     }
     
     /**
         * @depends test_place_create
         */
-    public function test_place_update_error(object $file)
+    public function test_place_update_error(object $place)
     {
-        // Create fake file with invalid max size
-        $name  = "photo.jpg";
-        $size = 3000; /*KB*/
-        $upload = UploadedFile::fake()->image($name)->size($size);
-        // Upload fake file using API web service
-        $response = $this->putJson("/api/files/{$file->id}", [
-            "upload" => $upload,
-        ]);
+        Sanctum::actingAs(self::$testUser);
+        // Cridar servei web de l'API
+        $response = $this->postJson("/api/places", self::$invalidData);
+
+        $params = [
+            'name', 'description'
+        ];
+        $response->assertInvalid($params);
         // Check ERROR response
         $this->_test_error($response);
     }
     
     public function test_place_update_notfound()
     {
+        Sanctum::actingAs(self::$testUser);
         $id = "not_exists";
         $response = $this->putJson("/api/places/{$id}", []);
         $this->_test_notfound($response);
@@ -181,19 +186,70 @@ class PlaceTest extends TestCase
     /**
         * @depends test_place_create
         */
-    public function test_place_delete(object $file)
+    public function test_place_delete(object $place)
     {
+        Sanctum::actingAs(self::$testUser);
         // Delete one file using API web service
-        $response = $this->deleteJson("/api/files/{$file->id}");
+        $response = $this->deleteJson("/api/places/{$place->id}");
         // Check OK response
         $this->_test_ok($response);
     }
     
     public function test_place_delete_notfound()
     {
+        Sanctum::actingAs(self::$testUser);
         $id = "not_exists";
         $response = $this->deleteJson("/api/places/{$id}");
         $this->_test_notfound($response);
+    }
+
+    /**
+        * @depends test_place_create
+        */
+    public function test_place_favourite(object $place)
+    {
+        Sanctum::actingAs(self::$testUser);
+        $response = $this->postJson("/api/places/{$place->id}/favourites");
+        // Check OK response
+        $this->_test_ok($response);
+        
+    }
+
+    /**
+        * @depends test_place_favourite
+        */
+    public function test_place_favourite_error(object $place)
+    {
+        Sanctum::actingAs(self::$testUser);
+        $response = $this->getJson("/api/places/{$place->id}/favourites");
+        // Check ERROR response
+        $this->_test_error($response);
+        
+    }
+
+    /**
+        * @depends test_place_create
+        */
+    public function test_place_unfavourite(object $place)
+    {
+        Sanctum::actingAs(self::$testUser);
+        // Read one file
+        $response = $this->getJson("/api/places/{$place->id}/favourite");
+        // Check OK response
+        $this->_test_ok($response);
+        
+    }
+
+    /**
+        * @depends test_place_create
+        */
+    public function test_place_unfavourite_error(object $place)
+    {
+        Sanctum::actingAs(self::$testUser);
+        $response = $this->getJson("/api/places/{$place->id}/favourite");
+        // Check ERROR response
+        $this->_test_error($response);
+        
     }
     
     protected function _test_ok($response, $status = 200)
@@ -237,12 +293,20 @@ class PlaceTest extends TestCase
         // Check JSON dynamic values
         $response->assertJsonPath("message",
             fn ($message) => !empty($message) && is_string($message)
-        );  
-        // Eliminem l'usuari al darrer test
-        //self::$testUser->delete(); 
-        // Comprovem que s'ha eliminat
-        //$this->assertDatabaseMissing('users', [
-        //    'email' => self::$testUser->email,
-        //]);    
+        );   
     }
+
+    public function test_place_last()
+    {
+        // Eliminem l'usuari al darrer test
+        self::$testUser->delete();
+        // Comprovem que s'ha eliminat
+        $this->assertDatabaseMissing('users', [
+            'email' => self::$testUser->email,
+        ]);
+    }
+
+
 }
+
+
