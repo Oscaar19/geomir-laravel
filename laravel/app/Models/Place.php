@@ -40,7 +40,7 @@ class Place extends Model
     }
     public function visibility()
     {
-        return $this->belongsTo(Place::class,);
+        return $this->belongsTo(Visibility::class);
     }
 
 }

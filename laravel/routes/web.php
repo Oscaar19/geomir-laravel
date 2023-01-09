@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\PlacesController;
 use App\Http\Controllers\PlaceCrudController;
+use App\Http\Controllers\ReviewController;
 
 
 
@@ -45,6 +46,8 @@ Route::resource('files', FileController::class)
     ->middleware(['auth']);
 Route::resource('places', PlacesController::class)
     ->middleware(['auth']);
+
+Route::resource('reviews', ReviewController::class);
 
 Route::get('/language/{locale}', [App\Http\Controllers\LanguageController::class, 'language']);
 

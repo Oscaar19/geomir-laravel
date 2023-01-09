@@ -13,17 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('favourites', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+        Schema::create('reviews', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('place_id');
             $table->foreign('place_id')->references('id')->on('places')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('author_id');
+            $table->foreign('author_id')->references('id')->on('users');
+            $table->string('review');
+            $table->integer('rating');
+            $table->timestamp('created_at');
         });
-        Schema::table('favourites', function (Blueprint $table) {
-            $table->id()->first();
-            $table->unique(['user_id', 'place_id']);
-        });
- 
     }
 
     /**
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('favourites');
+        Schema::dropIfExists('reviews');
     }
 };
