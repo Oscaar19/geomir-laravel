@@ -47,7 +47,7 @@ Route::resource('files', FileController::class)
 Route::resource('places', PlacesController::class)
     ->middleware(['auth']);
 
-Route::resource('reviews', ReviewController::class);
+Route::resource('places.reviews', ReviewController::class);
 
 Route::get('/language/{locale}', [App\Http\Controllers\LanguageController::class, 'language']);
 

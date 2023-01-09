@@ -1,6 +1,8 @@
 @extends('layouts.app')
-@vite('resources/js/files/create.js')
 
+@env(['local','development'])
+   @vite('resources/js/files/create.js')
+@endenv
 
 @section('content')
     @include('flash')

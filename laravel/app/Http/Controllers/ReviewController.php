@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Place;
+use App\Models\Review;
 
 class ReviewController extends Controller
 {
@@ -36,10 +37,9 @@ class ReviewController extends Controller
         // Obtenir dades del formulari
         $review = $request->get('review');
         $rating = $request->get('rating');
-        $place_id = $place->id;
 
         $newReview = Review::create([
-            'place_id' => $place_id,
+            'place_id' => $place->id,
             'author_id' => auth()->user()->id,
             'review' => $review,
             'rating' => $rating,

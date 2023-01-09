@@ -8,7 +8,10 @@
     <div class="divCreate">
         <form id="create" class="maxWidthMaxHeight" method="post" action="{{ route('places.store') }}" enctype="multipart/form-data">
             @csrf
-            @vite('resources/js/places/create.js')
+            @env(['local','development'])
+                @vite('resources/js/places/create.js')
+            @endenv
+            
             <div id="name" class="divInput centrar marginTop">
                 <input class="inputBackground" placeholder="Name" type="text" class="form-control" name="name"/>
                 <div class="error alert alert-danger alert-dismissible fade"></div>

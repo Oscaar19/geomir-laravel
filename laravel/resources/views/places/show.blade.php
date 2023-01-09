@@ -48,7 +48,7 @@
                 <a class="actionButton centrar" href="{{ route('places.index') }}">Torna enrere</a>
             </div>
             <div>
-                <a class="actionButton centrar" href="{{ route('reviews.create', $place) }}">Fer ressenya</a>
+                <a class="actionButton centrar" href="{{ route('places.reviews.create', $place) }}">Fer ressenya</a>
             </div>
         </div>
         @include('flash')

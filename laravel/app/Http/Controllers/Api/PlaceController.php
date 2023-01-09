@@ -236,7 +236,7 @@ class PlaceController extends Controller
         }else{
             return response()->json([
                 'success'  => false,
-                'message' => 'The place is is not favourite'
+                'message' => 'The place is not favourite'
             ], 500);
             
         }  

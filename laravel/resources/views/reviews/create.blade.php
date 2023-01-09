@@ -1,12 +1,14 @@
 @extends('layouts.app')
-
+@env(['local','development'])
+    @vite(['resources/sass/app.scss', 'resources/js/bootstrap.js'])  
+@endenv
 
 @section('content')
 
 
 
     <div class="divCreate">
-        <form id="create" class="maxWidthMaxHeight" method="post" action="{{ route('reviews.store', $place) }}" enctype="multipart/form-data">
+        <form id="create" class="maxWidthMaxHeight" method="post" action="{{ route('places.reviews.store', $place) }}" enctype="multipart/form-data">
             @csrf
             <div id="review" class="divInput centrar marginTop">
                 <input class="inputBackground" placeholder="Review" type="textarea" class="form-control" name="review"/>
