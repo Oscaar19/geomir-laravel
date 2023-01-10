@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Place;
 use App\Models\File;
 use App\Models\User;
+use App\Models\Review;
 use App\Models\Favourite;
 use App\Models\Visibility;
 use Illuminate\Http\Request;
@@ -115,7 +116,9 @@ class PlacesController extends Controller
     {
         $file=File::find($place->file_id);
         $user=User::find($place->author_id);
-
+        $reviews = DB::table('reviews')->where('author_id',"=", $place->author_id)->get();
+        \Log::debug("Les reviews son:");
+        \Log::debug($reviews);
         $is_fav = false;
         try {
             if (Favourite::where('user_id', '=', auth()->user()->id)->where('place_id','=', $place->id)->exists()) {
@@ -130,6 +133,7 @@ class PlacesController extends Controller
             'file'=>$file,
             'user'=>$user,
             'is_fav'=>$is_fav,
+            'reviews'=>$reviews,
         ]);        
          
 

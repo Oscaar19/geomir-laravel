@@ -52,6 +52,13 @@
             </div>
         </div>
         @include('flash')
+        @foreach ($reviews as $review)
+            <div>
+                <div>{{ $review->author->name }}</div>
+                <div>{{ $review->review }}</div>
+                <div>{{ $review->rating }}</div>
+            </div>
+        @endforeach
     </div>           
 
 @endsection
