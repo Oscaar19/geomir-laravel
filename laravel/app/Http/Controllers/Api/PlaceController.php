@@ -199,7 +199,7 @@ class PlaceController extends Controller
     public function favourite($id)
     {
         $place=Place::find($id);
-        if (Favourite::where([['user_id', "=" ,auth()->user()->id],['place_id', "=" ,$place->id],])->exists()) {
+        if (Favourite::where([['user_id', "=" ,auth()->user()->id],['place_id', "=" ,$id],])->exists()) {
             return response()->json([
                 'success'  => false,
                 'message' => 'The place is already favourite'

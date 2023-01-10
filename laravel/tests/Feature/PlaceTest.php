@@ -209,6 +209,7 @@ class PlaceTest extends TestCase
     public function test_place_favourite(object $place)
     {
         Sanctum::actingAs(self::$testUser);
+        
         $response = $this->postJson("/api/places/{$place->id}/favourites");
         // Check OK response
         $this->_test_ok($response);
