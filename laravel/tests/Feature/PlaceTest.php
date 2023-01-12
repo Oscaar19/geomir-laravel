@@ -182,6 +182,54 @@ class PlaceTest extends TestCase
         $response = $this->putJson("/api/places/{$id}", []);
         $this->_test_notfound($response);
     }
+
+    /**
+        * @depends test_place_create
+        */
+        public function test_place_favourite(object $place)
+        {
+            Sanctum::actingAs(self::$testUser);
+            $response = $this->postJson("/api/places/{$place->id}/favourites");
+            // Check OK response
+            $this->_test_ok($response);
+            
+        }
+    
+    /**
+        * @depends test_place_create
+        */
+        public function test_place_favourite_error(object $place)
+        {
+            Sanctum::actingAs(self::$testUser);
+            $response = $this->postJson("/api/places/{$place->id}/favourites");
+            // Check response
+            $response->assertStatus(500);
+        }
+    
+        /**
+            * @depends test_place_create
+            */
+        public function test_place_unfavourite(object $place)
+        {
+            Sanctum::actingAs(self::$testUser);
+            // Read one file
+            $response = $this->deleteJson("/api/places/{$place->id}/favourites");
+            // Check OK response
+            $this->_test_ok($response);
+            
+        }
+    
+        /**
+            * @depends test_place_create
+            */
+        public function test_place_unfavourite_error(object $place)
+        {
+            Sanctum::actingAs(self::$testUser);
+            $response = $this->deleteJson("/api/places/{$place->id}/favourites");
+            // Check response
+            $response->assertStatus(500);
+            
+        }
     
     /**
         * @depends test_place_create
@@ -203,55 +251,7 @@ class PlaceTest extends TestCase
         $this->_test_notfound($response);
     }
 
-    /**
-        * @depends test_place_create
-        */
-    public function test_place_favourite(object $place)
-    {
-        Sanctum::actingAs(self::$testUser);
-        
-        $response = $this->postJson("/api/places/{$place->id}/favourites");
-        // Check OK response
-        $this->_test_ok($response);
-        
-    }
-
-    /**
-        * @depends test_place_favourite
-        */
-    public function test_place_favourite_error(object $place)
-    {
-        Sanctum::actingAs(self::$testUser);
-        $response = $this->getJson("/api/places/{$place->id}/favourites");
-        // Check ERROR response
-        $this->_test_error($response);
-        
-    }
-
-    /**
-        * @depends test_place_create
-        */
-    public function test_place_unfavourite(object $place)
-    {
-        Sanctum::actingAs(self::$testUser);
-        // Read one file
-        $response = $this->getJson("/api/places/{$place->id}/favourite");
-        // Check OK response
-        $this->_test_ok($response);
-        
-    }
-
-    /**
-        * @depends test_place_create
-        */
-    public function test_place_unfavourite_error(object $place)
-    {
-        Sanctum::actingAs(self::$testUser);
-        $response = $this->getJson("/api/places/{$place->id}/favourite");
-        // Check ERROR response
-        $this->_test_error($response);
-        
-    }
+    
     
     protected function _test_ok($response, $status = 200)
     {

@@ -7,11 +7,16 @@ use Illuminate\Http\Request;
 use App\Models\Place;
 use App\Models\File;
 use App\Models\Favourite;
+use Illuminate\Support\Facades\Log;
 
 
 
 class PlaceController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum')->only('store','update','favourite','unfavourite');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -179,7 +184,6 @@ class PlaceController extends Controller
     public function destroy($id)
     {
         $place=Place::find($id);
-
         if (!$place){
             return response()->json([
                 'success' => false,
@@ -199,7 +203,10 @@ class PlaceController extends Controller
     public function favourite($id)
     {
         $place=Place::find($id);
-        if (Favourite::where([['user_id', "=" ,auth()->user()->id],['place_id', "=" ,$id],])->exists()) {
+        if (Favourite::where([
+                ['user_id', "=" , auth()->user()->id],
+                ['place_id', "=" ,$id],
+            ])->exists()) {
             return response()->json([
                 'success'  => false,
                 'message' => 'The place is already favourite'
@@ -212,7 +219,7 @@ class PlaceController extends Controller
             return response()->json([
                 'success' => true,
                 'data'    => $favourite
-            ], 201);
+            ], 200);
         }        
     }
 
@@ -220,19 +227,19 @@ class PlaceController extends Controller
     {
         $place=Place::find($id);
         if (Favourite::where([['user_id', "=" ,auth()->user()->id],['place_id', "=" ,$place->id],])->exists()) {
+            
             $favourite = Favourite::where([
                 ['user_id', "=" ,auth()->user()->id],
-                ['place_id', "=" ,$place->id],
+                ['place_id', "=" ,$id],
             ]);
-    
             $favourite->first();
     
             $favourite->delete();
 
             return response()->json([
                 'success' => true,
-                'data'    => $favourite
-            ], 201);
+                'data'    => $place
+            ], 200);
         }else{
             return response()->json([
                 'success'  => false,
