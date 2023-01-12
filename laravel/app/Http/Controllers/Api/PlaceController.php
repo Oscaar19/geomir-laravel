@@ -15,7 +15,7 @@ class PlaceController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:sanctum')->only('store','update','favourite','unfavourite');
+        $this->middleware('auth:sanctum')->only('store','update','unfavourite','favourite');
     }
     /**
      * Display a listing of the resource.
