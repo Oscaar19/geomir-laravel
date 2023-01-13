@@ -1,11 +1,12 @@
 @extends('layouts.app')
 @section('content')
 <style>
+    /*Doy medidas al div general*/
     .divAbout{
         height: 35vw;
         width: 50vw;
     }
-
+    /*Doy medidas y estilo al div de la tarjeta de las fotos */
     .divCard{
         width: 35%;
         height: 80%;
@@ -15,19 +16,19 @@
         overflow: hidden;
         transition: all 400ms ease;
     }
-
+    /*Doy medidas al div de las imagenes*/
     .divImagenes{
         height: 100%;
         width: 100%;
         position: relative;
     }
-
+    /*Doy medidas al div de dentro del div de las imagenes */
     .divImagenes div{
         height: 100% !important;
         width: 100% !important;
         position: absolute;
     }
-
+    /*Doy medidas al div de la informacion de la tarjeta*/
     .divContenido{
         margin-top: 7%;
         height: 43%;
@@ -36,14 +37,14 @@
         align-items: center;
         flex-direction: column;
     }
-
+    /*Doy medidas y foto de fondo al div de la imagen 1 */
     .foto1{
         background: url(../imatges/foto_antigua.JPG);
         background-size: 100% 100%;
         filter: contrast();
     }
 
-
+    /*Doy medidas y foto de fondo al div de la imagen 2 */
     .foto2{
         background: url(../imatges/FOTO_ACTUAL.jpg);
         background-size: 100% 100%;
@@ -52,7 +53,7 @@
         -webkit-filter: grayscale(100%);
         filter: grayscale(100%);
     }
-
+    /*Hago cuando pongo el puntero sobre imagen 2 haga la transicion */
     .foto2:hover{
         clip-path: polygon(0 0,100% 0,100% 100%,0 100%);
     }
@@ -61,11 +62,11 @@
     .foto1:hover ~ .foto2{
         clip-path: polygon(0 0,0 0,0 100%,0 100%);
     }
-
+    /*Tipo de letra para las etiquetas h3*/
     h3{
         font-family: helvetica;
     }
-
+    /*Doy la capacidad a que cuando paso por encima del cargo me pueda cambiar el contenido*/
     .cargoEmpresa{
         padding: 1.5rem 5rem;
         cursor: default;
@@ -73,6 +74,7 @@
         overflow: hidden;
     }
 
+    /*Doy el contenido default al div cargoEmpresa*/
     .cargoEmpresa::before{
         content: 'CEO/Fundador';
         position: absolute;
@@ -81,7 +83,7 @@
         transform: translate(-50%,-50%);
         transition: .2s ease;
     }
-
+    /*Doy el contenido al div cargoEmpresa cuando paso por encima*/
     .cargoEmpresa::after{
         content: 'Amant dels eSports';
         position: absolute;
@@ -91,12 +93,12 @@
         transition: .2s ease;
         opacity: 0;
     }
-
+    /*Hago la transicion de antes de pasar el puntero por encima*/
     .cargoEmpresa:hover::before{
         transform: translate(-50%, -50%) scale(3);
         opacity: 0;
     }
-
+    /*Hago la transicion de cuando paso por encima con el puntero*/
     .cargoEmpresa:hover::after{
         transform: translate(-50%, -50%) scale(1);
         opacity: 1;
@@ -172,13 +174,14 @@
     </div>
 </div>
 <script>
+    /*Recojo en las variables aquellas etiquetas que quiero cambiar*/
     var pistaAudio = document.querySelector('.divImagenes');
     var audio = document.getElementById('mySoundClip');
-
+    /*Indico que cuando paso el mouse por encima, reproduce*/
     pistaAudio.addEventListener('mouseover',function(){
         audio.play();
     });
-
+    /*Indico que cuando quito el mouse, deja de reproducir*/
     pistaAudio.addEventListener('mouseout',function(){
         audio.pause();
     });
@@ -200,7 +203,7 @@
     console.log("🎬 PLAY VIDEO " + cur)
     videos[cur].play()
     }
-    
+    //Reproduzco los videos cuando hago click
     prevBtn.addEventListener("click", function(){
     cur = (cur-1 >= 0) ? cur-1 : max
     playVideos()
