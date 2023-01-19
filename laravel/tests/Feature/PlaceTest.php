@@ -239,8 +239,9 @@ class PlaceTest extends TestCase
         Sanctum::actingAs(self::$testUser);
         // Delete one file using API web service
         $response = $this->deleteJson("/api/places/{$place->id}");
-        // Check OK response
+        // Check OK response.
         $this->_test_ok($response);
+
     }
     
     public function test_place_delete_notfound()
