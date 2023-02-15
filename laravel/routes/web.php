@@ -57,4 +57,8 @@ Route::delete('/places/{place}/favourites', [App\Http\Controllers\PlacesControll
 Route::get('/aboutme', function () {
     return view('aboutme');
  });
+
+ Route::get('/contact-page', function () {
+    return view('/contact-page');
+ });
  
