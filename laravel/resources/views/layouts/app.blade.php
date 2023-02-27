@@ -96,6 +96,14 @@
                             </div>
                         </div>
                         <div class="navElement">
+                            <div class="emojiNav">
+                                <img src="../../../imatges/contactos.png" class="imagenNav"></img>
+                            </div>
+                            <div class="nombreNav">
+                                <a href="/contact-page" class="linkNav">ON SOM</a>
+                            </div>
+                        </div>
+                        <div class="navElement">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>

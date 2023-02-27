@@ -18,9 +18,9 @@
 <script src="https://cdn.jsdelivr.net/npm/ol@v7.2.2/dist/ol.js"></script>
 <div class="contacto-flex">
     <div class="contenedor-fondo">
-        <video src="./audio/videoContact.mp4" class="video" autoplay="true" muted="true" loop="true"></video>
-        <div class="texto-arriba">Contacta amb Geo - Mir</div>
-        <div class="texto-arriba2">Envians un missatge</div>
+        <video src="./audio/video-fondo.mp4" class="video" autoplay="true" muted="true" loop="true"></video>
+        <div class="texto-arriba">Contacta amb nosaltres</div>
+        <div class="texto-arriba2">Envia el teu missatge</div>
         <button class="boton-contacto">Formulari de contacte</button>
     </div>
 
@@ -64,7 +64,7 @@
         <div class="grupo-3">
             <div class="box">
                 <div class="contenedor-logo">
-                    <img src="./images/logo_geomir.ico" alt="Logo de Geomir">
+                    <img src="../imatges/logo.PNG" alt="Logo de Geomir">
                 </div>
             </div>
             <div class="caja">

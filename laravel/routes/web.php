@@ -59,6 +59,6 @@ Route::get('/aboutme', function () {
  });
 
  Route::get('/contact-page', function () {
-    return view('/contact-page');
+    return view('contact-page');
  });
  

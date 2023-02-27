@@ -1,3 +1,4 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
 *{
     font-family: Helvetica;
 }
@@ -566,5 +567,148 @@ $line-height-base: 1.6;
     height: 30%;
 }
 
+#map{
+    width: 100%;
+    height: 90%;
+}
+//A partir d'aqui página de contacte//
+// Estableix el flex al contenidor
+.contacto-flex{
+    display: flex;
+    flex-direction: column;
+}
+// Estableix les mides del contenidor
+.contenedor-fondo{
+    position: relative;
+    width: 100%;
+    text-align: center;
+    
+}
+// Parametres video de fons
+.video{
+    width:100%;
+    height: 80%;
+    opacity: 0.5;
+}
 
+// Mides del mapa
 
+#map { 
+    height: 500px;
+    width: 100%;
+    margin: 0 auto;
+    border:2px solid black ;
+}
+// Parapetres del mapa
+.mapa-contacto{
+    background-color: white;
+    top: 115.2vh;
+    height: 900px;
+    text-align: center;
+    align-items: center;
+}
+// Parametres del text
+.texto-arriba{
+    position: absolute;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 3vw;
+    color: white;
+    font-weight: bold;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+// Parametres del text
+.texto-arriba2{
+    position: absolute;
+    font-size: 1.5vw;
+    color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+// Parametres del boto
+.boton-contacto{
+    padding: 0.5%;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color:#3C6E71;
+    border-radius: 10px;
+    border: none;
+    width: 10%;
+    font-size: 0.8vw;
+    color: white;
+}
+// Footer (Peu de pagina)
+// Mides peu de pagina
+.pie-de-pagina{
+    width: 100%;
+    background-color: #3C6E71;
+}
+// Parametres del peu de pagina
+.pie-de-pagina .grupo-3{
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap:50px;
+    padding: 45px 0px;
+}
+// Mides del contenidor del logo
+.contenedor-logo{
+    width: 80%;
+    height: 80%;
+    margin-left: 5%;
+    display: flex;
+}
+// Parametres del contenidor del logo
+.ontenedor-logo img{
+    width: 150px;
+    height: 150px;
+}
+// Parametres de la capsa
+.caja{
+    font-size: 0.5vw;
+}
+// Parametres de la capsa
+.caja a i{
+    font-size: 1.3vw;
+}
+// Parametres del peu de pagina
+.pie-de-pagina .grupo-3 .caja h2{
+    color: #fff;
+    margin-bottom: 25px;
+    font-size: 20px;
+}
+// Parametres del peu de pagina
+.pie-de-pagina .grupo-3 .caja p{
+    color: #efefef;
+    margin-bottom: 10px;
+}
+// Parametres del peu de pagina
+.pie-de-pagina .grupo-3 .red-social a{
+    display: inline-block;
+    text-decoration: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 4px;
+    color: #3C6E71;
+    margin-right: 10px;
+    background-color: #e6e5db;
+    text-align: center;
+    transition: all 300ms ease;
+}
+// Parametres del peu de pagina
+.pie-de-pagina .grupo-3 .red-social a:hover{
+    background-color: #bbbbb6;
+}
+// Parametres del peu de pagina
+.pie-de-pagina .grupo-3 .red-social a i{
+    width: 5%;
+    height: 45px;
+    padding-top: 10%;
+}
