@@ -49,7 +49,7 @@
                     @else
                         <div class="navElement">
                             <div class="emojiNav">
-                                <img src="../../../imatges/chincheta.png" class="imagenNav"></img>
+                                <img src="../../../imatges/chincheta.png" class="imagenNav" alt="Logo de places."></img>
                             </div>
                             <div class="nombreNav">
                                 <a href="{{ url('/places') }}" class="linkNav">LLOCS</a>
@@ -65,27 +65,11 @@
                         </div>
                         <div class="navElement">
                             <div class="emojiNav">
-                                <img src="../../../imatges/favoritos.png" class="imagenNav"></img>
-                            </div>
-                            <div class="nombreNav">
-                                <a href="{{ url('/files') }}" class="linkNav">LLOCS PREFERITS</a>
-                            </div> 
-                        </div>
-                        <div class="navElement">
-                            <div class="emojiNav">
                                 <img src="../../../imatges/reseña.png" class="imagenNav"></img>
                             </div>
                             <div class="nombreNav">
                                 <a href="{{ url('/places') }}" class="linkNav">RESSENYES</a>
                             </div> 
-                        </div>
-                        <div class="navElement">
-                            <div class="emojiNav">
-                                <img src="../../../imatges/contactos.png" class="imagenNav"></img>
-                            </div>
-                            <div class="nombreNav">
-                                <a href="{{ url('/places') }}" class="linkNav">LA MEVA AGENDA</a>
-                            </div>
                         </div>
                         <div class="navElement">
                             <div class="emojiNav">
