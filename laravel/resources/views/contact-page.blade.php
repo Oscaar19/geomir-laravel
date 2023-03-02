@@ -27,35 +27,53 @@
         <div id="map">
             <script>
                 
-                var map = L.map('map').setView([41.231391, 1.728118],17);
-                L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                //creacion mapa
+                var map = L.map('map').setView([41.2310177, 1.7279358], 17);
+                    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
                     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                 }).addTo(map);
-                var marker = L.marker([41.231391, 1.728118]).addTo(map);
-                
-                var circle = L.circle([41.231391, 1.728118], {
+                //creacion circulo rojo mapa
+                var circle = L.circle([41.2310177, 1.7285358], {
                     color: 'red',
                     fillColor: '#f03',
                     fillOpacity: 0.5,
-                    radius: 200
+                    radius: 100
                 }).addTo(map);
-                
-                marker.bindPopup("<b>Aquí es troba Geo-Mir</b>").openPopup();
-                circle.bindPopup("Area propera a nosaltres");
-                var popup = L.popup()
-                    .setLatLng([41.231391, 1.728118])
-                    .setContent("On som nosaltres")
-                    .openOn(map);
+                // ATAJOS de ctrl + alt + g y ctrl +alt + c
+                document.onkeyup = function(e) {
+                //esto muestra mi latitud y longitud
+                if (e.ctrlKey && e.altKey && e.which == 71) {
+                    navigator.geolocation.getCurrentPosition(success);
+                    function success(position) {
+                    var coordenadas = position.coords;
+                    alert("Tu posición ahora mismo es:"+
+                    "\n- Tu Latitud : " + coordenadas.latitude+
+                    "\n- Tu Longitud: " + coordenadas.longitude);
+                    };
+                } 
+                //esto centra el mapa en el mir
+                else if (e.ctrlKey && e.altKey && e.which == 67) {
+                    alert("Acepta para centrar el mapa");
+                    map.remove();
+                    map = L.map('map').setView([41.2310177, 1.7279358], 17);
+                    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                }).addTo(map);
+                circle = L.circle([41.2310177, 1.7285358], {
+                    color: 'red',
+                    fillColor: '#f03',
+                    fillOpacity: 0.5,
+                    radius: 100
+                }).addTo(map);
                 navigator.geolocation.getCurrentPosition(showPosition);
-                function showPosition(position)
-                {
-                    var marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map);
-                    var popup = L.popup()
-                    .setLatLng([position.coords.latitude, position.coords.longitude])
-                    .setContent("Tu ets aquí!!")
-                    .openOn(map);
-                
+                function showPosition(position) {
+                    marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map);
+                    marker.bindPopup("Usted esta aquí").openPopup();
                 }
+                }
+                };
                 
             </script>
         </div>
@@ -84,4 +102,12 @@
         </div>
     </footer>
 </div>
+<script>
+    //marcador puntero mapa
+    navigator.geolocation.getCurrentPosition(showPosition);
+    function showPosition(position) {
+        var marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map);
+        marker.bindPopup("Usted esta aquí").openPopup();
+    }
+</script>
 @endsection

@@ -84,7 +84,8 @@
                                 <img src="../../../imatges/contactos.png" class="imagenNav"></img>
                             </div>
                             <div class="nombreNav">
-                                <a href="/contact-page" class="linkNav">ON SOM</a>
+                                <!-- con alt shift c vamos a contact-page -->
+                                <a href="/contact-page" class="linkNav" accesskey="c">ON SOM</a>
                             </div>
                         </div>
                         <div class="navElement">
