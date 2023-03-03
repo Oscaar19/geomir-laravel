@@ -70,7 +70,7 @@
                 navigator.geolocation.getCurrentPosition(showPosition);
                 function showPosition(position) {
                     marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map);
-                    marker.bindPopup("Usted esta aquí").openPopup();
+                    marker.bindPopup("Ústed esta aquí").openPopup();
                 }
                 }
                 };
