@@ -713,3 +713,15 @@ $line-height-base: 1.6;
     height: 45px;
     padding-top: 10%;
 }
+
+//le doy medidas al micro para que salga mas grande
+#micro{
+    cursor: pointer;
+    font-size: 5em;
+}
+
+#speech-micro{
+    width: 5em;
+    height: 5em;
+}
+
